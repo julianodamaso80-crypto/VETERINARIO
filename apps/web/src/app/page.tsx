@@ -94,7 +94,7 @@ const testimonials = [
     name: 'Dra. Marina Silva',
     role: 'Clinica VetCare',
     avatar: 'MS',
-    content: 'O Pet360 transformou nossa clinica. Antes perdiamos tempo com papel, agora tudo e digital e os tutores adoram receber as vacinas pelo WhatsApp!',
+    content: 'O PetPro transformou nossa clinica. Antes perdiamos tempo com papel, agora tudo e digital e os tutores adoram receber as vacinas pelo WhatsApp!',
     rating: 5,
   },
   {
@@ -108,7 +108,7 @@ const testimonials = [
     name: 'Carla Mendes',
     role: 'Hotel Pet Paradise',
     avatar: 'CM',
-    content: 'Os tutores ficam tranquilos porque mandam updates diarios com foto. A taxa de retorno aumentou 40% desde que usamos o Pet360.',
+    content: 'Os tutores ficam tranquilos porque mandam updates diarios com foto. A taxa de retorno aumentou 40% desde que usamos o PetPro.',
     rating: 5,
   },
 ];
@@ -164,7 +164,7 @@ const pricingPlans = [
 const faqs = [
   {
     question: 'Preciso instalar algum software?',
-    answer: 'Nao! O Pet360 funciona 100% na nuvem. Basta acessar pelo navegador de qualquer dispositivo - computador, tablet ou celular.',
+    answer: 'Nao! O PetPro funciona 100% na nuvem. Basta acessar pelo navegador de qualquer dispositivo - computador, tablet ou celular.',
   },
   {
     question: 'Meus dados estao seguros?',
@@ -196,7 +196,7 @@ export default function Home() {
                 <PawPrint className="h-6 w-6 text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                Pet360
+                PetPro
               </span>
             </div>
             <div className="hidden md:flex items-center gap-8">
@@ -233,7 +233,7 @@ export default function Home() {
         <div className="relative w-full">
           <Image
             src="/images/hero-banner-2.jpg"
-            alt="Pet360 - Sistema Completo de Gestao para Negocios Pet"
+            alt="PetPro - Sistema Completo de Gestao para Negocios Pet"
             width={1920}
             height={1080}
             className="w-full h-auto object-cover"
@@ -288,7 +288,7 @@ export default function Home() {
         <div className="relative w-full">
           <Image
             src="/images/hero-banner-1.jpg"
-            alt="Pet360 - Todas as funcionalidades"
+            alt="PetPro - Todas as funcionalidades"
             width={1920}
             height={1080}
             className="w-full h-auto object-cover"
@@ -384,7 +384,7 @@ export default function Home() {
               Amado por Negocios Pet
             </h2>
             <p className="text-xl text-blue-100">
-              Veja o que nossos clientes falam sobre o Pet360
+              Veja o que nossos clientes falam sobre o PetPro
             </p>
           </div>
 
@@ -510,7 +510,7 @@ export default function Home() {
             Pronto para Transformar seu Negocio?
           </h2>
           <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-            Junte-se a centenas de estabelecimentos que ja usam Pet360 para crescer
+            Junte-se a centenas de estabelecimentos que ja usam PetPro para crescer
           </p>
           <Link href="/register">
             <Button size="lg" variant="secondary" className="text-lg px-10 py-6 h-auto">
@@ -534,7 +534,7 @@ export default function Home() {
                 <div className="bg-primary rounded-xl p-2">
                   <PawPrint className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold">Pet360</span>
+                <span className="text-2xl font-bold">PetPro</span>
               </div>
               <p className="text-gray-400 mb-6">
                 A plataforma completa para gestao de negocios pet.
@@ -580,7 +580,7 @@ export default function Home() {
               <ul className="space-y-3 text-gray-400">
                 <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
-                  <span>contato@pet360.com.br</span>
+                  <span>contato@petpro.site</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="h-4 w-4" />
@@ -596,7 +596,7 @@ export default function Home() {
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm">
-              2024 Pet360. Todos os direitos reservados.
+              2024 PetPro. Todos os direitos reservados.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
               <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>

@@ -156,7 +156,7 @@ export default function DashboardPage() {
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="h-5 w-5 text-yellow-300" />
-            <span className="text-blue-100 text-sm font-medium">Pet360 Dashboard</span>
+            <span className="text-blue-100 text-sm font-medium">PetPro Dashboard</span>
           </div>
           <h1 className="text-3xl font-bold mb-2">Bem-vindo de volta!</h1>
           <p className="text-blue-100 max-w-xl">

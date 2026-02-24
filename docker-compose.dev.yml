@@ -7,18 +7,18 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:16-alpine
-    container_name: pet360-postgres-dev
+    container_name: petpro-postgres-dev
     restart: unless-stopped
     environment:
-      POSTGRES_USER: pet360
-      POSTGRES_PASSWORD: pet360_secret
-      POSTGRES_DB: pet360
+      POSTGRES_USER: petpro
+      POSTGRES_PASSWORD: petpro_secret
+      POSTGRES_DB: petpro
     volumes:
       - postgres_dev_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U pet360"]
+      test: ["CMD-SHELL", "pg_isready -U petpro"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -26,7 +26,7 @@ services:
   # Redis Cache
   redis:
     image: redis:7-alpine
-    container_name: pet360-redis-dev
+    container_name: petpro-redis-dev
     restart: unless-stopped
     volumes:
       - redis_dev_data:/data
@@ -36,10 +36,10 @@ services:
   # PgAdmin (Database Management)
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: pet360-pgadmin
+    container_name: petpro-pgadmin
     restart: unless-stopped
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@pet360.com
+      PGADMIN_DEFAULT_EMAIL: admin@petpro.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
@@ -49,7 +49,7 @@ services:
   # Evolution API (WhatsApp) - Development
   evolution:
     image: atendai/evolution-api:latest
-    container_name: pet360-evolution-dev
+    container_name: petpro-evolution-dev
     restart: unless-stopped
     environment:
       SERVER_URL: http://localhost:8080
@@ -57,7 +57,7 @@ services:
       AUTHENTICATION_API_KEY: dev-api-key
       DATABASE_ENABLED: true
       DATABASE_PROVIDER: postgresql
-      DATABASE_CONNECTION_URI: postgresql://pet360:pet360_secret@postgres:5432/pet360
+      DATABASE_CONNECTION_URI: postgresql://petpro:petpro_secret@postgres:5432/petpro
     ports:
       - "8080:8080"
     depends_on:
@@ -75,4 +75,4 @@ volumes:
 
 networks:
   default:
-    name: pet360-dev-network
+    name: petpro-dev-network

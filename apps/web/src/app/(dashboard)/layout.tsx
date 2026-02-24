@@ -84,7 +84,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       >
         <div className="flex items-center justify-between h-16 px-4 border-b">
           <Link href="/dashboard" className="text-xl font-bold text-primary">
-            Pet360
+            PetPro
           </Link>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
             <X className="h-6 w-6" />

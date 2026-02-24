@@ -91,7 +91,7 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white p-4">
       <Card className="w-full max-w-lg">
         <CardHeader className="text-center">
-          <Link href="/" className="text-2xl font-bold text-primary mb-2 block">Pet360</Link>
+          <Link href="/" className="text-2xl font-bold text-primary mb-2 block">PetPro</Link>
           <CardTitle>Criar Conta</CardTitle>
           <CardDescription>
             {step === 1 ? 'Dados do seu negocio' : 'Seus dados de acesso'}

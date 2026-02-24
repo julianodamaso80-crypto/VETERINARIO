@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Pet360 - Sistema Completo para Negocios Pet',
+  title: 'PetPro - Sistema Completo para Negocios Pet',
   description: 'Plataforma SaaS completa para gestao de clinicas veterinarias, petshops, hoteis e daycares',
 };
 

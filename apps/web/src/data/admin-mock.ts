@@ -1,5 +1,5 @@
 // ============================================
-// PET360 ADMIN - DADOS MOCK
+// PETPRO ADMIN - DADOS MOCK
 // ============================================
 
 export interface SaaSClient {
@@ -715,7 +715,7 @@ export const mockLogs: SystemLog[] = [
   { id: 'l3', type: 'info', message: 'Novo cliente cadastrado', clientId: 'c24', clientName: 'PetZone Veterinaria', timestamp: '2026-02-10T09:30:00', source: 'auth/register' },
   { id: 'l4', type: 'error', message: 'Falha ao enviar WhatsApp', clientId: 'c3', clientName: 'Hotel Pet Paradise', details: 'Evolution API timeout after 30s', timestamp: '2026-02-10T09:00:00', source: 'whatsapp/send' },
   { id: 'l5', type: 'info', message: 'Backup do banco concluido', details: 'Tamanho: 245MB, Duracao: 12s', timestamp: '2026-02-10T06:00:00', source: 'system/backup' },
-  { id: 'l6', type: 'warning', message: 'Certificado SSL expira em 15 dias', details: 'Dominio: pet360.inema.online', timestamp: '2026-02-10T06:00:00', source: 'system/ssl' },
+  { id: 'l6', type: 'warning', message: 'Certificado SSL expira em 15 dias', details: 'Dominio: petpro.site', timestamp: '2026-02-10T06:00:00', source: 'system/ssl' },
   { id: 'l7', type: 'info', message: 'Deploy realizado com sucesso', details: 'Versao: 1.4.2, Commit: cb39fda', timestamp: '2026-02-09T22:00:00', source: 'system/deploy' },
   { id: 'l8', type: 'error', message: 'Falha no pagamento', clientId: 'c17', clientName: 'VetLife Clinica', details: 'Cartao recusado - saldo insuficiente', timestamp: '2026-02-09T18:00:00', source: 'billing/payment' },
   { id: 'l9', type: 'info', message: 'Plano alterado', clientId: 'c18', clientName: 'Pet Dreams Hotel', details: 'Profissional -> Enterprise', timestamp: '2026-02-09T15:30:00', source: 'billing/plan' },

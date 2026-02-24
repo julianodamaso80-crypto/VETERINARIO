@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  transpilePackages: ['@pet360/shared'],
+  transpilePackages: ['@petpro/shared'],
   images: {
     remotePatterns: [
       {

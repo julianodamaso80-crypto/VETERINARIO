@@ -131,7 +131,7 @@ export default function CadastroPetSitterPage() {
         <div className="container mx-auto py-4 px-4">
           <div className="flex items-center justify-between">
             <Link href="/pet-sitters" className="text-2xl font-bold text-primary">
-              Pet360 Cuidadores
+              PetPro Cuidadores
             </Link>
             <Link href="/pet-sitters" className="text-gray-600 hover:text-primary">
               Voltar
@@ -143,7 +143,7 @@ export default function CadastroPetSitterPage() {
       <div className="container mx-auto py-8 px-4 max-w-2xl">
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Seja um Cuidador Pet360</CardTitle>
+            <CardTitle className="text-2xl">Seja um Cuidador PetPro</CardTitle>
             <CardDescription>
               Cadastre-se e comece a ganhar dinheiro cuidando de pets
             </CardDescription>

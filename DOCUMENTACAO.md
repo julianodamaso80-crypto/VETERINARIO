@@ -1,4 +1,4 @@
-# Pet360 - Documentacao Completa
+# PetPro - Documentacao Completa
 
 ## Indice
 
@@ -17,9 +17,9 @@
 
 ## Sobre o Sistema
 
-### O que e o Pet360?
+### O que e o PetPro?
 
-O **Pet360** e uma plataforma SaaS (Software as a Service) completa para gestao de negocios pet. Foi desenvolvido para atender diferentes tipos de estabelecimentos do setor pet:
+O **PetPro** e uma plataforma SaaS (Software as a Service) completa para gestao de negocios pet. Foi desenvolvido para atender diferentes tipos de estabelecimentos do setor pet:
 
 - **Clinicas Veterinarias**: Prontuario eletronico, consultas, vacinas, exames
 - **Petshops**: Vendas, estoque, produtos, servicos de banho e tosa
@@ -73,7 +73,7 @@ O **Pet360** e uma plataforma SaaS (Software as a Service) completa para gestao 
 ### Estrutura do Projeto
 
 ```
-pet360/
+petpro/
 ├── apps/
 │   ├── api/                    # Backend NestJS
 │   │   ├── prisma/
@@ -445,8 +445,8 @@ O sistema utiliza PostgreSQL com Prisma ORM. Os principais modelos sao:
 #### 1. Clonar o Repositorio
 
 ```bash
-git clone https://github.com/inematds/pet360.git
-cd pet360
+git clone https://github.com/inematds/petpro.git
+cd petpro
 ```
 
 #### 2. Iniciar Infraestrutura
@@ -480,7 +480,7 @@ nano .env.local
 **Variaveis principais:**
 ```env
 # Database
-DATABASE_URL="postgresql://pet360:pet360_secret@localhost:5432/pet360"
+DATABASE_URL="postgresql://petpro:petpro_secret@localhost:5432/petpro"
 
 # JWT
 JWT_SECRET="sua-chave-secreta-muito-segura"
@@ -551,13 +551,13 @@ pnpm dev
 ### Configuracao do PgAdmin
 
 1. Acesse http://localhost:5050
-2. Login: `admin@pet360.com` / `admin`
+2. Login: `admin@petpro.com` / `admin`
 3. Adicione servidor:
    - Host: `postgres` (ou `localhost` se fora do Docker)
    - Port: 5432
-   - User: `pet360`
-   - Password: `pet360_secret`
-   - Database: `pet360`
+   - User: `petpro`
+   - Password: `petpro_secret`
+   - Database: `petpro`
 
 ### Personalizacao
 
@@ -869,8 +869,8 @@ sudo apt install docker-compose-plugin
 #### 2. Clonar e Configurar
 
 ```bash
-git clone https://github.com/inematds/pet360.git
-cd pet360
+git clone https://github.com/inematds/petpro.git
+cd petpro
 
 # Configurar variaveis de producao
 cp .env.example .env
@@ -880,7 +880,7 @@ nano .env
 **Variaveis de Producao:**
 ```env
 # Database
-DATABASE_URL="postgresql://pet360:SENHA_FORTE@postgres:5432/pet360"
+DATABASE_URL="postgresql://petpro:SENHA_FORTE@postgres:5432/petpro"
 POSTGRES_PASSWORD=SENHA_FORTE
 
 # JWT (gerar chave segura)
@@ -950,10 +950,10 @@ curl http://localhost/health
 
 ```bash
 # Backup
-docker compose exec postgres pg_dump -U pet360 pet360 > backup.sql
+docker compose exec postgres pg_dump -U petpro petpro > backup.sql
 
 # Restore
-docker compose exec -T postgres psql -U pet360 pet360 < backup.sql
+docker compose exec -T postgres psql -U petpro petpro < backup.sql
 ```
 
 ---
@@ -983,7 +983,7 @@ docker compose ps postgres
 
 3. Testar conexao:
 ```bash
-docker compose exec postgres psql -U pet360 -d pet360
+docker compose exec postgres psql -U petpro -d petpro
 ```
 
 #### Migration falhou
@@ -1038,7 +1038,7 @@ docker system prune -a
 
 ### Links Uteis
 
-- **Repositorio**: https://github.com/inematds/pet360
+- **Repositorio**: https://github.com/inematds/petpro
 - **API Docs**: http://localhost:3001/docs (Swagger)
 - **Prisma Studio**: `npx prisma studio` (visualizar banco)
 
@@ -1048,4 +1048,4 @@ Para duvidas e suporte, abra uma issue no GitHub.
 
 ---
 
-*Documentacao gerada para Pet360 v1.0*
+*Documentacao gerada para PetPro v1.0*

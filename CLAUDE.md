@@ -1,40 +1,35 @@
-# Pet360 - Informacoes do Projeto
+# PetPro - Informacoes do Projeto
 
 ## Regras Importantes
 
-- **SEMPRE** apos fazer commits, fazer push para origin/main E atualizar a VPS automaticamente
-- Nao esperar o usuario pedir para atualizar a VPS - fazer automaticamente
+- **SEMPRE** apos fazer commits, fazer push para origin/main
+- O deploy no Railway e automatico via GitHub (push para main dispara rebuild)
 
-## VPS / Deploy
+## Deploy - Railway
 
-- **Host**: pet360.inema.online
-- **Usuario SSH**: root
-- **Diretorio do projeto**: /root/pet360
-- **Comando de deploy**: `ssh root@pet360.inema.online "cd /root/pet360 && git pull origin main"`
+- **Dominio**: petpro.site
+- **Plataforma**: Railway (deploy automatico via GitHub)
+- **Servicos**: API (NestJS), Web (Next.js), PostgreSQL, Redis
 
 ## Stack
 
 - **Frontend**: Next.js 14 (apps/web)
 - **Backend**: NestJS 10 (apps/api)
-- **Banco de dados**: PostgreSQL 16
-- **Cache**: Redis
+- **Banco de dados**: PostgreSQL 16 (Railway plugin)
+- **Cache**: Redis (Railway plugin)
 - **WhatsApp**: Evolution API
-- **Containers**: Docker Compose
+- **Deploy**: Railway
 
 ## Comandos Uteis
 
-### Atualizar VPS
+### Desenvolvimento local
 ```bash
-git push origin main
-ssh root@pet360.inema.online "cd /root/pet360 && git pull origin main"
+pnpm dev           # Roda API + Web
+pnpm dev:api       # Roda so a API
+pnpm dev:web       # Roda so o Web
 ```
 
-### Rebuild containers na VPS
+### Docker local (dev)
 ```bash
-ssh root@pet360.inema.online "cd /root/pet360 && docker compose up -d --build"
-```
-
-### Ver logs na VPS
-```bash
-ssh root@pet360.inema.online "cd /root/pet360 && docker compose logs -f"
+docker compose -f docker-compose.dev.yml up -d
 ```

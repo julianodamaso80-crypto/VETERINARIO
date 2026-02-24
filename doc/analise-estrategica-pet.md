@@ -1,4 +1,4 @@
-# Analise Estrategica: Sistema Pet (Pet360)
+# Analise Estrategica: Sistema Pet (PetPro)
 
 **Data:** 05/01/2026
 **Tipo:** Analise de Mercado e Potencial Estrategico
@@ -567,7 +567,7 @@ POR QUE OFERECER GRATUITO?
 3. ENTRADA EM CORPORACOES
    - Empresas querem ESG
    - Parcerias com ONGs
-   - "Usamos Pet360 que apoia adocao"
+   - "Usamos PetPro que apoia adocao"
 
 4. DADOS VALIOSOS
    - Padroes de adocao
@@ -849,7 +849,7 @@ O mercado pet brasileiro e uma das maiores oportunidades de SaaS vertical devido
 
 ### Recomendacao Final
 
-**PROSSEGUIR** com alta prioridade no desenvolvimento do Pet360:
+**PROSSEGUIR** com alta prioridade no desenvolvimento do PetPro:
 
 1. Comecar por clinicas veterinarias (maior dor, maior LTV)
 2. Expandir para pet shops com servicos integrados

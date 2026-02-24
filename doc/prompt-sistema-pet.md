@@ -7,7 +7,7 @@
 
 # PARTE 1: VISAO GERAL DO SISTEMA
 
-## 1.1 Nome Sugerido: **Pet360** ou **PetCare**
+## 1.1 Nome Sugerido: **PetPro** ou **PetCare**
 
 ## 1.2 Publico-Alvo
 
@@ -2029,7 +2029,7 @@ Voce pode acessar a qualquer momento por este link. Valido para viagens, hoteis 
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: pet360-postgres
+    container_name: petpro-postgres
     restart: always
     ports:
       - "127.0.0.1:5432:5432"
@@ -2045,11 +2045,11 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - pet360-network
+      - petpro-network
 
   redis:
     image: redis:7-alpine
-    container_name: pet360-redis
+    container_name: petpro-redis
     restart: always
     command: redis-server --appendonly yes --maxmemory 256mb
     volumes:
@@ -2058,11 +2058,11 @@ services:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
     networks:
-      - pet360-network
+      - petpro-network
 
   evolution-api:
     image: evoapicloud/evolution-api:v2.3.7
-    container_name: pet360-evolution
+    container_name: petpro-evolution
     restart: always
     environment:
       - SERVER_URL=${EVOLUTION_PUBLIC_URL}
@@ -2088,14 +2088,14 @@ services:
       interval: 10s
       start_period: 30s
     networks:
-      - pet360-network
+      - petpro-network
 
   api:
     build:
       context: .
       dockerfile: docker/api/Dockerfile
       target: production
-    container_name: pet360-api
+    container_name: petpro-api
     restart: always
     environment:
       - NODE_ENV=production
@@ -2112,7 +2112,7 @@ services:
       redis:
         condition: service_healthy
     networks:
-      - pet360-network
+      - petpro-network
 
   web:
     build:
@@ -2121,16 +2121,16 @@ services:
       target: production
       args:
         - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
-    container_name: pet360-web
+    container_name: petpro-web
     restart: always
     depends_on:
       - api
     networks:
-      - pet360-network
+      - petpro-network
 
   nginx:
     image: nginx:alpine
-    container_name: pet360-nginx
+    container_name: petpro-nginx
     restart: always
     ports:
       - "80:80"
@@ -2142,10 +2142,10 @@ services:
       - web
       - api
     networks:
-      - pet360-network
+      - petpro-network
 
 networks:
-  pet360-network:
+  petpro-network:
     driver: bridge
 
 volumes:
@@ -2163,9 +2163,9 @@ volumes:
 # .env.example
 
 # Database
-POSTGRES_USER=pet360
+POSTGRES_USER=petpro
 POSTGRES_PASSWORD=your_secure_password
-POSTGRES_DB=pet360
+POSTGRES_DB=petpro
 
 # API
 NODE_ENV=production
@@ -2175,7 +2175,7 @@ JWT_REFRESH_SECRET=your_refresh_secret
 # Evolution API (WhatsApp)
 EVOLUTION_API_KEY=your_evolution_api_key
 EVOLUTION_PUBLIC_URL=https://whatsapp.yourdomain.com
-EVOLUTION_INSTANCE_NAME=pet360_main
+EVOLUTION_INSTANCE_NAME=petpro_main
 
 # Frontend
 FRONTEND_URL=https://yourdomain.com

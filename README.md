@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="ref/photo_5118356803921054612_y.jpg" alt="Pet360 - Sistema Completo de Gestao para Negocios Pet" width="100%"/>
+  <img src="ref/photo_5118356803921054612_y.jpg" alt="PetPro - Sistema Completo de Gestao para Negocios Pet" width="100%"/>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Pet360-v1.0-blue?style=for-the-badge" alt="Pet360 v1.0"/>
+  <img src="https://img.shields.io/badge/PetPro-v1.0-blue?style=for-the-badge" alt="PetPro v1.0"/>
   <img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js" alt="Next.js 14"/>
   <img src="https://img.shields.io/badge/NestJS-10-red?style=for-the-badge&logo=nestjs" alt="NestJS"/>
   <img src="https://img.shields.io/badge/PostgreSQL-16-blue?style=for-the-badge&logo=postgresql" alt="PostgreSQL"/>
   <img src="https://img.shields.io/badge/Docker-Ready-blue?style=for-the-badge&logo=docker" alt="Docker"/>
 </p>
 
-<h1 align="center">Pet360</h1>
+<h1 align="center">PetPro</h1>
 
 <p align="center">
   <strong>Plataforma SaaS completa para gestao de negocios pet</strong>
@@ -22,11 +22,11 @@
 
 ---
 
-## O que e o Pet360?
+## O que e o PetPro?
 
-**Pet360** e uma solucao completa e moderna para gestao de negocios do setor pet. Desenvolvido com as tecnologias mais recentes do mercado, oferece uma experiencia intuitiva para proprietarios e funcionarios gerenciarem todas as operacoes do dia a dia.
+**PetPro** e uma solucao completa e moderna para gestao de negocios do setor pet. Desenvolvido com as tecnologias mais recentes do mercado, oferece uma experiencia intuitiva para proprietarios e funcionarios gerenciarem todas as operacoes do dia a dia.
 
-### Por que escolher o Pet360?
+### Por que escolher o PetPro?
 
 - **Multi-tenant** - Cada negocio tem seus dados completamente isolados e seguros
 - **Multi-perfil** - Proprietario, veterinario, atendente, groomer, cada um com suas permissoes
@@ -178,7 +178,7 @@ Encontre cuidadores de confianca:
 ## Arquitetura do Projeto
 
 ```
-pet360/
+petpro/
 ├── apps/
 │   ├── api/                    # Backend NestJS
 │   │   ├── prisma/
@@ -252,8 +252,8 @@ pet360/
 
 ```bash
 # 1. Clone o repositorio
-git clone https://github.com/inematds/pet360.git
-cd pet360
+git clone https://github.com/inematds/petpro.git
+cd petpro
 
 # 2. Inicie a infraestrutura (PostgreSQL + Redis)
 docker compose -f docker-compose.dev.yml up -d
@@ -302,8 +302,8 @@ Senha: admin123
 
 ```bash
 # 1. Clone o repositorio no servidor
-git clone https://github.com/inematds/pet360.git
-cd pet360
+git clone https://github.com/inematds/petpro.git
+cd petpro
 
 # 2. Configure as variaveis de ambiente
 cp .env.example .env
@@ -323,7 +323,7 @@ Para deploy em producao com HTTPS, siga estes passos:
 
 #### 1. Configure o DNS
 
-Aponte seu dominio (ex: `pet360.seudominio.com`) para o IP do servidor.
+Aponte seu dominio (ex: `petpro.seudominio.com`) para o IP do servidor.
 
 #### 2. Instale Certbot e obtenha certificado
 
@@ -332,26 +332,26 @@ Aponte seu dominio (ex: `pet360.seudominio.com`) para o IP do servidor.
 apt update && apt install -y certbot
 
 # Obtenha o certificado
-certbot certonly --standalone -d pet360.seudominio.com
+certbot certonly --standalone -d petpro.seudominio.com
 ```
 
 #### 3. Configure o Nginx
 
-Crie o arquivo `/etc/nginx/sites-available/pet360`:
+Crie o arquivo `/etc/nginx/sites-available/petpro`:
 
 ```nginx
 server {
     listen 80;
-    server_name pet360.seudominio.com;
+    server_name petpro.seudominio.com;
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name pet360.seudominio.com;
+    server_name petpro.seudominio.com;
 
-    ssl_certificate /etc/letsencrypt/live/pet360.seudominio.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/pet360.seudominio.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/petpro.seudominio.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/petpro.seudominio.com/privkey.pem;
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
 
@@ -393,7 +393,7 @@ server {
 #### 4. Ative o site e reinicie Nginx
 
 ```bash
-ln -s /etc/nginx/sites-available/pet360 /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/petpro /etc/nginx/sites-enabled/
 nginx -t && systemctl reload nginx
 ```
 
@@ -404,7 +404,7 @@ nginx -t && systemctl reload nginx
 web:
   build:
     args:
-      NEXT_PUBLIC_API_URL: https://pet360.seudominio.com/api
+      NEXT_PUBLIC_API_URL: https://petpro.seudominio.com/api
 ```
 
 #### 6. Build e deploy
@@ -425,7 +425,7 @@ docker compose -f docker-compose.prod.yml up -d --build
 | `REDIS_URL` | URL de conexao Redis | `redis://localhost:6379` |
 | `JWT_SECRET` | Chave secreta JWT (min 32 chars) | `sua-chave-super-secreta-aqui` |
 | `JWT_REFRESH_SECRET` | Chave para refresh token | `outra-chave-secreta-aqui` |
-| `NEXT_PUBLIC_API_URL` | URL publica da API | `https://pet360.seudominio.com/api` |
+| `NEXT_PUBLIC_API_URL` | URL publica da API | `https://petpro.seudominio.com/api` |
 
 ### WhatsApp (Evolution API)
 
@@ -433,7 +433,7 @@ docker compose -f docker-compose.prod.yml up -d --build
 |----------|-----------|---------|
 | `EVOLUTION_API_URL` | URL da Evolution API | `http://localhost:8080` |
 | `EVOLUTION_API_KEY` | Chave de autenticacao | `sua-api-key` |
-| `EVOLUTION_INSTANCE_NAME` | Nome da instancia | `pet360_main` |
+| `EVOLUTION_INSTANCE_NAME` | Nome da instancia | `petpro_main` |
 
 ### Opcionais
 
@@ -553,7 +553,7 @@ POST   /whatsapp/send          # Enviar mensagem
 
 ## Tipos de Negocio Suportados
 
-O Pet360 suporta multiplos tipos de negocio, podendo um unico estabelecimento ter varios tipos:
+O PetPro suporta multiplos tipos de negocio, podendo um unico estabelecimento ter varios tipos:
 
 | Tipo | Codigo | Descricao |
 |------|--------|-----------|
@@ -637,8 +637,8 @@ O dashboard de Analytics fornece metricas em tempo real:
 
 ## Suporte
 
-- **Issues**: [GitHub Issues](https://github.com/inematds/pet360/issues)
-- **Email**: suporte@pet360.com.br
+- **Issues**: [GitHub Issues](https://github.com/inematds/petpro/issues)
+- **Email**: suporte@petpro.com.br
 
 ---
 

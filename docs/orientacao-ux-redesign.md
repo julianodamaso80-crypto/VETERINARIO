@@ -1,4 +1,4 @@
-# Orientacao para Redesign Visual - Pet360
+# Orientacao para Redesign Visual - PetPro
 
 **Data:** 2026-01-09
 **Contexto:** Orientacao do BMad Orchestrator sobre como abordar mudancas de layout/visual no projeto
@@ -7,7 +7,7 @@
 
 ## Objetivo
 
-Dar acabamento visual ao projeto Pet360, mantendo toda a estrutura funcional e apenas refinando o layout/design.
+Dar acabamento visual ao projeto PetPro, mantendo toda a estrutura funcional e apenas refinando o layout/design.
 
 ---
 
@@ -61,7 +61,7 @@ Definir se quer:
 
 ---
 
-## Paginas do Pet360 para Considerar
+## Paginas do PetPro para Considerar
 
 ### Dashboard (Alta Prioridade)
 - `/dashboard` - Pagina principal

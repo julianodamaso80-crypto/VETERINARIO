@@ -1,4 +1,4 @@
-# Pet360 - Relatorio de Validacao QA
+# PetPro - Relatorio de Validacao QA
 
 **Data:** 2026-01-06
 **Avaliador:** Quinn - Test Architect
@@ -241,4 +241,4 @@ O sistema tem a estrutura correta mas possui 2 problemas criticos que impedem fu
 ---
 
 *Relatorio gerado por Quinn - Test Architect & Quality Advisor*
-*Pet360 QA Review v1.0*
+*PetPro QA Review v1.0*
