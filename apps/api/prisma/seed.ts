@@ -264,6 +264,143 @@ async function main() {
 
   console.log('Marketplace categories created:', categories.length);
 
+  // Create marketplace seller
+  let seller = await prisma.marketplaceSeller.findFirst({
+    where: { email: 'loja@petshopdemo.com' },
+  });
+  if (!seller) {
+    seller = await prisma.marketplaceSeller.create({
+      data: {
+        name: 'PetShop Demo Store',
+        email: 'loja@petshopdemo.com',
+        phone: '11966666666',
+        sellerType: 'STORE',
+        isVerified: true,
+        city: 'Sao Paulo',
+        state: 'SP',
+      },
+    });
+  }
+  console.log('Marketplace seller created:', seller.name);
+
+  // Create marketplace listings (status: ACTIVE so they appear in queries)
+  const listingsData = [
+    {
+      sellerId: seller.id,
+      categoryId: categories[0].id,
+      title: 'Racao Premium Adulto 15kg',
+      slug: 'racao-premium-adulto-15kg',
+      description: 'Racao premium para caes adultos de todas as racas. Rico em proteinas e vitaminas.',
+      price: 89.90,
+      stock: 50,
+      status: 'ACTIVE',
+      forSpecies: ['DOG'],
+      forSizes: ['SMALL', 'MEDIUM', 'LARGE'],
+    },
+    {
+      sellerId: seller.id,
+      categoryId: categories[3].id,
+      title: 'Brinquedo Corda Resistente',
+      slug: 'brinquedo-corda-resistente',
+      description: 'Brinquedo de corda super resistente para caes e gatos. Ideal para brincadeiras interativas.',
+      price: 29.90,
+      stock: 100,
+      status: 'ACTIVE',
+      forSpecies: ['DOG', 'CAT'],
+      forSizes: ['SMALL', 'MEDIUM', 'LARGE'],
+    },
+    {
+      sellerId: seller.id,
+      categoryId: categories[4].id,
+      title: 'Shampoo Neutro Pet 500ml',
+      slug: 'shampoo-neutro-pet-500ml',
+      description: 'Shampoo neutro para caes e gatos. Formula suave, nao irrita a pele.',
+      price: 24.90,
+      stock: 80,
+      status: 'ACTIVE',
+      forSpecies: ['DOG', 'CAT'],
+    },
+  ];
+
+  for (const listing of listingsData) {
+    const exists = await prisma.marketplaceListing.findFirst({
+      where: { slug: listing.slug },
+    });
+    if (!exists) {
+      await prisma.marketplaceListing.create({ data: listing });
+    }
+  }
+  console.log('Marketplace listings created:', listingsData.length);
+
+  // Create pet sitters (status: APPROVED, isActive: true so they appear in queries)
+  const petSittersData = [
+    {
+      name: 'Ana Oliveira',
+      email: 'ana.oliveira@email.com',
+      phone: '11955555555',
+      bio: 'Apaixonada por animais! Cuido de caes e gatos com muito carinho. Experiencia de 5 anos.',
+      city: 'Sao Paulo',
+      state: 'SP',
+      status: 'APPROVED',
+      isActive: true,
+      isVerified: true,
+      acceptedSpecies: ['DOG', 'CAT'],
+      acceptedSizes: ['MINI', 'SMALL', 'MEDIUM', 'LARGE'],
+      averageRating: 4.8,
+      totalReviews: 23,
+      totalBookings: 45,
+      hasOwnTransport: true,
+      hasYard: false,
+      serviceRadius: 15,
+    },
+    {
+      name: 'Bruno Costa',
+      email: 'bruno.costa@email.com',
+      phone: '11944444444',
+      bio: 'Tenho espaco amplo com quintal. Especialista em hospedagem e creche para pets.',
+      city: 'Sao Paulo',
+      state: 'SP',
+      status: 'APPROVED',
+      isActive: true,
+      isVerified: true,
+      acceptedSpecies: ['DOG', 'CAT'],
+      acceptedSizes: ['MINI', 'SMALL', 'MEDIUM', 'LARGE', 'GIANT'],
+      averageRating: 4.5,
+      totalReviews: 15,
+      totalBookings: 30,
+      hasOwnTransport: false,
+      hasYard: true,
+      serviceRadius: 10,
+    },
+  ];
+
+  const petSitterServices = [
+    [
+      { serviceType: 'WALK', name: 'Passeio 30min', priceType: 'PER_SERVICE', price: 35.00, duration: 30, maxPets: 3 },
+      { serviceType: 'VISIT', name: 'Visita em casa', priceType: 'PER_SERVICE', price: 50.00, duration: 60, maxPets: 5 },
+    ],
+    [
+      { serviceType: 'BOARDING', name: 'Hospedagem diaria', priceType: 'PER_NIGHT', price: 80.00, duration: 1440, maxPets: 4, includesFood: true },
+      { serviceType: 'DAYCARE', name: 'Creche diurna', priceType: 'PER_DAY', price: 60.00, duration: 480, maxPets: 6, includesFood: true },
+    ],
+  ];
+
+  for (let i = 0; i < petSittersData.length; i++) {
+    const sitterData = petSittersData[i];
+    let sitter = await prisma.petSitter.findFirst({
+      where: { email: sitterData.email },
+    });
+    if (!sitter) {
+      sitter = await prisma.petSitter.create({ data: sitterData });
+      for (const service of petSitterServices[i]) {
+        await prisma.petSitterService.create({
+          data: { petSitterId: sitter.id, ...service },
+        });
+      }
+    }
+  }
+  console.log('Pet sitters created:', petSittersData.length);
+
   // Create boarding room
   await prisma.boardingRoom.upsert({
     where: { businessId_name: { businessId: business.id, name: 'Suite Individual' } },
