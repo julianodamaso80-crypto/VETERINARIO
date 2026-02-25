@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { formatPhone, formatDate, maskCPF, maskPhone } from '@/lib/utils';
+import { formatPhone, formatDate, maskPhone } from '@/lib/utils';
 import { createTutorSchema, type CreateTutorInput } from '@/lib/schemas/tutor.schema';
 import {
   Plus,
@@ -32,7 +32,7 @@ export default function TutoresPage() {
 
   const form = useForm<CreateTutorInput>({
     resolver: zodResolver(createTutorSchema),
-    defaultValues: { name: '', phone: '', email: '', cpf: '', address: '', city: '', state: '', zipCode: '' },
+    defaultValues: { name: '', phone: '', email: '', address: '', city: '', state: '', zipCode: '' },
   });
 
   const { toast } = useToast();
@@ -107,7 +107,7 @@ export default function TutoresPage() {
           <div className="relative">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <Input
-              placeholder="Buscar por nome, telefone, email ou CPF..."
+              placeholder="Buscar por nome, telefone ou email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-12 h-12 text-base border-0 bg-gray-50 focus:bg-white transition-colors"
@@ -168,19 +168,6 @@ export default function TutoresPage() {
                 />
                 {form.formState.errors.email && (
                   <p className="text-xs text-red-500">{form.formState.errors.email.message}</p>
-                )}
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">CPF</label>
-                <Input
-                  value={form.watch('cpf')}
-                  onChange={(e) => form.setValue('cpf', maskCPF(e.target.value), { shouldValidate: true })}
-                  placeholder="000.000.000-00"
-                  className="h-11"
-                  maxLength={14}
-                />
-                {form.formState.errors.cpf && (
-                  <p className="text-xs text-red-500">{form.formState.errors.cpf.message}</p>
                 )}
               </div>
               <div className="md:col-span-2 space-y-2">
