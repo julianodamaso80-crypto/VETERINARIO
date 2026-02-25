@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'PetPro - Sistema Completo para Negocios Pet',
   description: 'Plataforma SaaS completa para gestao de clinicas veterinarias, petshops, hoteis e daycares',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
