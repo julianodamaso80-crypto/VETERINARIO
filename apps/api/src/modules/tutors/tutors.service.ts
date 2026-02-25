@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateTutorDto } from './dto/create-tutor.dto';
 import { UpdateTutorDto } from './dto/update-tutor.dto';
@@ -17,7 +17,6 @@ export class TutorsService {
         { name: { contains: search, mode: 'insensitive' } },
         { phone: { contains: search } },
         { email: { contains: search, mode: 'insensitive' } },
-        { cpf: { contains: search } },
       ];
     }
 
@@ -85,15 +84,6 @@ export class TutorsService {
   }
 
   async create(businessId: string, dto: CreateTutorDto) {
-    if (dto.cpf) {
-      const existing = await this.prisma.tutor.findFirst({
-        where: { businessId, cpf: dto.cpf },
-      });
-      if (existing) {
-        throw new ConflictException('CPF ja cadastrado');
-      }
-    }
-
     return this.prisma.tutor.create({
       data: {
         ...dto,
@@ -104,15 +94,6 @@ export class TutorsService {
 
   async update(id: string, businessId: string, dto: UpdateTutorDto) {
     await this.findOne(id, businessId);
-
-    if (dto.cpf) {
-      const existing = await this.prisma.tutor.findFirst({
-        where: { businessId, cpf: dto.cpf, NOT: { id } },
-      });
-      if (existing) {
-        throw new ConflictException('CPF ja cadastrado');
-      }
-    }
 
     return this.prisma.tutor.update({
       where: { id },

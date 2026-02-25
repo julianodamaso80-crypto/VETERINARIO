@@ -24,10 +24,6 @@ export class RegisterPetSitterDto {
   @IsString()
   phone: string;
 
-  @ApiProperty({ example: '123.456.789-00' })
-  @IsString()
-  cpf: string;
-
   @ApiPropertyOptional({ example: 'Amo animais e cuido com muito carinho!' })
   @IsOptional()
   @IsString()

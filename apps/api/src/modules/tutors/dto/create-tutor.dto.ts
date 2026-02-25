@@ -6,11 +6,6 @@ export class CreateTutorDto {
   @IsString()
   name: string;
 
-  @ApiPropertyOptional({ example: '123.456.789-00' })
-  @IsOptional()
-  @IsString()
-  cpf?: string;
-
   @ApiPropertyOptional({ example: 'maria@email.com' })
   @IsOptional()
   @IsEmail()

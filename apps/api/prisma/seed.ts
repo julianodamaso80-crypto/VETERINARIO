@@ -149,20 +149,22 @@ async function main() {
   console.log('Services created:', services.length);
 
   // Create sample tutor
-  const tutor = await prisma.tutor.upsert({
-    where: { businessId_cpf: { businessId: business.id, cpf: '12345678900' } },
-    update: {},
-    create: {
-      businessId: business.id,
-      name: 'Maria Santos',
-      cpf: '12345678900',
-      phone: '11977777777',
-      email: 'maria@email.com',
-      address: 'Av. Paulista, 1000',
-      city: 'Sao Paulo',
-      state: 'SP',
-    },
+  let tutor = await prisma.tutor.findFirst({
+    where: { businessId: business.id, phone: '11977777777' },
   });
+  if (!tutor) {
+    tutor = await prisma.tutor.create({
+      data: {
+        businessId: business.id,
+        name: 'Maria Santos',
+        phone: '11977777777',
+        email: 'maria@email.com',
+        address: 'Av. Paulista, 1000',
+        city: 'Sao Paulo',
+        state: 'SP',
+      },
+    });
+  }
 
   console.log('Tutor created:', tutor.name);
 

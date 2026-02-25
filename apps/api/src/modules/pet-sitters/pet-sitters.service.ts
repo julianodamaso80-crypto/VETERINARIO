@@ -16,7 +16,6 @@ export class PetSittersService {
         name: data.name,
         email: data.email,
         phone: data.phone,
-        cpf: data.cpf,
         bio: data.bio,
         address: data.address,
         city: data.city,

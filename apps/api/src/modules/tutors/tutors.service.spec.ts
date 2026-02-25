@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TutorsService } from './tutors.service';
 import { PrismaService } from '../prisma/prisma.service';
-import { NotFoundException, ConflictException } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 
 describe('TutorsService', () => {
   let service: TutorsService;
@@ -32,7 +32,6 @@ describe('TutorsService', () => {
     name: 'Maria Silva',
     email: 'maria@example.com',
     phone: '11999999999',
-    cpf: '12345678901',
     businessId: 'business-1',
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -121,10 +120,8 @@ describe('TutorsService', () => {
         name: 'Maria Silva',
         email: 'maria@example.com',
         phone: '11999999999',
-        cpf: '12345678901',
       };
 
-      mockPrismaService.tutor.findFirst.mockResolvedValue(null);
       mockPrismaService.tutor.create.mockResolvedValue({
         ...mockTutor,
         ...createDto,
@@ -138,20 +135,6 @@ describe('TutorsService', () => {
       });
     });
 
-    it('should throw ConflictException if CPF already exists', async () => {
-      const createDto = {
-        name: 'Maria Silva',
-        email: 'maria@example.com',
-        phone: '11999999999',
-        cpf: '12345678901',
-      };
-
-      mockPrismaService.tutor.findFirst.mockResolvedValue(mockTutor);
-
-      await expect(service.create('business-1', createDto)).rejects.toThrow(
-        ConflictException,
-      );
-    });
   });
 
   describe('update', () => {
@@ -177,15 +160,6 @@ describe('TutorsService', () => {
       ).rejects.toThrow(NotFoundException);
     });
 
-    it('should throw ConflictException if CPF already used by another tutor', async () => {
-      mockPrismaService.tutor.findFirst
-        .mockResolvedValueOnce(mockTutor) // findOne check
-        .mockResolvedValueOnce({ id: 'other-tutor' }); // CPF check
-
-      await expect(
-        service.update('tutor-1', 'business-1', { cpf: '99999999999' }),
-      ).rejects.toThrow(ConflictException);
-    });
   });
 
   describe('delete', () => {
