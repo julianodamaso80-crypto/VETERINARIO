@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Dog, Cat, Bird, Car, Home, Check, ArrowLeft, ArrowRight } from 'lucide-react';
+import { maskCPF, maskPhone } from '@/lib/utils';
 
 const speciesOptions = [
   { value: 'DOG', label: 'Cachorros', icon: Dog },
@@ -197,8 +198,9 @@ export default function CadastroPetSitterPage() {
                     <Input
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, phone: maskPhone(e.target.value) })}
                       placeholder="(11) 99999-9999"
+                      maxLength={15}
                       required
                     />
                   </div>
@@ -207,8 +209,9 @@ export default function CadastroPetSitterPage() {
                     <label className="block text-sm font-medium mb-1">CPF *</label>
                     <Input
                       value={formData.cpf}
-                      onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, cpf: maskCPF(e.target.value) })}
                       placeholder="000.000.000-00"
+                      maxLength={14}
                       required
                     />
                   </div>

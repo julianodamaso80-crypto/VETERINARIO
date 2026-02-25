@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { RequestOtpDto } from './dto/request-otp.dto';
+import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @ApiTags('auth')
@@ -31,14 +33,14 @@ export class AuthController {
 
   @Post('otp/request')
   @ApiOperation({ summary: 'Solicitar codigo OTP via WhatsApp' })
-  async requestOtp(@Body() body: { phone: string }) {
-    return this.authService.requestOtp(body.phone);
+  async requestOtp(@Body() dto: RequestOtpDto) {
+    return this.authService.requestOtp(dto.phone);
   }
 
   @Post('otp/verify')
   @ApiOperation({ summary: 'Verificar codigo OTP e fazer login' })
-  async verifyOtp(@Body() body: { phone: string; otp: string }) {
-    return this.authService.verifyOtp(body.phone, body.otp);
+  async verifyOtp(@Body() dto: VerifyOtpDto) {
+    return this.authService.verifyOtp(dto.phone, dto.otp);
   }
 
   @Get('me')

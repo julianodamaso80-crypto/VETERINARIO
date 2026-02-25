@@ -2,20 +2,21 @@
 
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { formatPhone, formatDate } from '@/lib/utils';
+import { formatPhone, formatDate, maskCPF, maskPhone } from '@/lib/utils';
+import { createTutorSchema, type CreateTutorInput } from '@/lib/schemas/tutor.schema';
 import {
   Plus,
   Search,
   Phone,
   Mail,
   Dog,
-  Edit,
-  Eye,
   Users,
   MapPin,
   Calendar,
@@ -28,15 +29,10 @@ import Link from 'next/link';
 export default function TutoresPage() {
   const [search, setSearch] = useState('');
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    cpf: '',
-    address: '',
-    city: '',
-    state: '',
-    zipCode: '',
+
+  const form = useForm<CreateTutorInput>({
+    resolver: zodResolver(createTutorSchema),
+    defaultValues: { name: '', phone: '', email: '', cpf: '', address: '', city: '', state: '', zipCode: '' },
   });
 
   const { toast } = useToast();
@@ -54,7 +50,7 @@ export default function TutoresPage() {
   const totalTutors = tutorsResponse?.pagination?.total || tutors.length;
 
   const createMutation = useMutation({
-    mutationFn: async (data: typeof formData) => {
+    mutationFn: async (data: CreateTutorInput) => {
       const response = await api.post('/tutors', data);
       return response.data;
     },
@@ -62,7 +58,7 @@ export default function TutoresPage() {
       queryClient.invalidateQueries({ queryKey: ['tutors'] });
       toast({ title: 'Tutor cadastrado com sucesso!' });
       setShowForm(false);
-      setFormData({ name: '', phone: '', email: '', cpf: '', address: '', city: '', state: '', zipCode: '' });
+      form.reset();
     },
     onError: (error: any) => {
       toast({
@@ -73,9 +69,8 @@ export default function TutoresPage() {
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    createMutation.mutate(formData);
+  const onSubmit = (data: CreateTutorInput) => {
+    createMutation.mutate(data);
   };
 
   return (
@@ -138,51 +133,60 @@ export default function TutoresPage() {
             </div>
           </CardHeader>
           <CardContent className="p-6">
-            <form onSubmit={handleSubmit} className="grid gap-5 md:grid-cols-2">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-5 md:grid-cols-2">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Nome completo *</label>
                 <Input
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  {...form.register('name')}
                   placeholder="Digite o nome do tutor"
                   className="h-11"
-                  required
                 />
+                {form.formState.errors.name && (
+                  <p className="text-xs text-red-500">{form.formState.errors.name.message}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Telefone *</label>
                 <Input
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  value={form.watch('phone')}
+                  onChange={(e) => form.setValue('phone', maskPhone(e.target.value), { shouldValidate: true })}
                   placeholder="(11) 99999-9999"
                   className="h-11"
-                  required
+                  maxLength={15}
                 />
+                {form.formState.errors.phone && (
+                  <p className="text-xs text-red-500">{form.formState.errors.phone.message}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Email</label>
                 <Input
                   type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  {...form.register('email')}
                   placeholder="email@exemplo.com"
                   className="h-11"
                 />
+                {form.formState.errors.email && (
+                  <p className="text-xs text-red-500">{form.formState.errors.email.message}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">CPF</label>
                 <Input
-                  value={formData.cpf}
-                  onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
+                  value={form.watch('cpf')}
+                  onChange={(e) => form.setValue('cpf', maskCPF(e.target.value), { shouldValidate: true })}
                   placeholder="000.000.000-00"
                   className="h-11"
+                  maxLength={14}
                 />
+                {form.formState.errors.cpf && (
+                  <p className="text-xs text-red-500">{form.formState.errors.cpf.message}</p>
+                )}
               </div>
               <div className="md:col-span-2 space-y-2">
                 <label className="text-sm font-medium text-gray-700">Endereco</label>
                 <Input
-                  value={formData.address}
-                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  {...form.register('address')}
                   placeholder="Rua, numero, complemento"
                   className="h-11"
                 />
@@ -190,8 +194,7 @@ export default function TutoresPage() {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Cidade</label>
                 <Input
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                  {...form.register('city')}
                   placeholder="Cidade"
                   className="h-11"
                 />
@@ -199,12 +202,14 @@ export default function TutoresPage() {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Estado</label>
                 <Input
-                  value={formData.state}
-                  onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                  {...form.register('state')}
                   placeholder="UF"
                   maxLength={2}
                   className="h-11"
                 />
+                {form.formState.errors.state && (
+                  <p className="text-xs text-red-500">{form.formState.errors.state.message}</p>
+                )}
               </div>
               <div className="md:col-span-2 flex gap-3 justify-end pt-4 border-t">
                 <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="px-6">

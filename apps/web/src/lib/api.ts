@@ -38,6 +38,7 @@ api.interceptors.response.use(
           const { access_token, refresh_token } = response.data;
           localStorage.setItem('token', access_token);
           localStorage.setItem('refreshToken', refresh_token);
+          document.cookie = `token=${access_token}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
 
           originalRequest.headers.Authorization = `Bearer ${access_token}`;
           return api(originalRequest);
@@ -45,6 +46,7 @@ api.interceptors.response.use(
       } catch (refreshError) {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
+        document.cookie = 'token=; path=/; max-age=0';
         window.location.href = '/login';
       }
     }

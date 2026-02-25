@@ -24,6 +24,14 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+function setTokenCookie(token: string) {
+  document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
+}
+
+function clearTokenCookie() {
+  document.cookie = 'token=; path=/; max-age=0';
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch (error) {
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
+      clearTokenCookie();
     } finally {
       setIsLoading(false);
     }
@@ -57,6 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { access_token, refresh_token, user: userData } = response.data;
     localStorage.setItem('token', access_token);
     localStorage.setItem('refreshToken', refresh_token);
+    setTokenCookie(access_token);
     setUser(userData);
     router.push('/dashboard');
   };
@@ -70,6 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { access_token, refresh_token, user: userData } = response.data;
     localStorage.setItem('token', access_token);
     localStorage.setItem('refreshToken', refresh_token);
+    setTokenCookie(access_token);
     setUser(userData);
     router.push('/dashboard');
   };
@@ -77,6 +88,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
+    clearTokenCookie();
     setUser(null);
     router.push('/login');
   };

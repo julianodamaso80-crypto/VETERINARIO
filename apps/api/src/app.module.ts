@@ -20,6 +20,7 @@ import { WhatsAppModule } from './modules/whatsapp/whatsapp.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { PetSittersModule } from './modules/pet-sitters/pet-sitters.module';
 import { MarketplaceModule } from './modules/marketplace/marketplace.module';
+import { RedisModule } from './modules/redis/redis.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { MarketplaceModule } from './modules/marketplace/marketplace.module';
       isGlobal: true,
       envFilePath: process.env.NODE_ENV === 'production' ? '.env' : '.env.local',
     }),
+    RedisModule,
     PrismaModule,
     AuthModule,
     UsersModule,
