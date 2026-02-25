@@ -28,9 +28,11 @@ export default function LoginPage() {
       await login(email, password);
       toast({ title: 'Login realizado com sucesso!' });
     } catch (error: any) {
+      const message = error.response?.data?.message
+        || (error.code === 'ERR_NETWORK' ? 'Servidor indisponivel. Tente novamente em instantes.' : 'Verifique suas credenciais');
       toast({
         title: 'Erro no login',
-        description: error.response?.data?.message || 'Verifique suas credenciais',
+        description: message,
         variant: 'destructive',
       });
     } finally {

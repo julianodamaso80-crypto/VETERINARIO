@@ -24,7 +24,7 @@ export default function MarketplacePage() {
     },
   });
 
-  const { data: listings, isLoading } = useQuery({
+  const { data: listings, isLoading, isError } = useQuery({
     queryKey: ['marketplace-listings', search, categoryId, sortBy, freeShipping],
     queryFn: async () => {
       const response = await api.get('/marketplace/listings', {
@@ -32,6 +32,7 @@ export default function MarketplacePage() {
       });
       return response.data;
     },
+    retry: 2,
   });
 
   return (
@@ -125,6 +126,10 @@ export default function MarketplacePage() {
         {isLoading ? (
           <div className="flex justify-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : isError ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500">Erro ao carregar produtos. Tente novamente.</p>
           </div>
         ) : listings?.listings?.length === 0 ? (
           <div className="text-center py-12">

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001') + '/api',
+  timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -47,7 +48,10 @@ api.interceptors.response.use(
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
         document.cookie = 'token=; path=/; max-age=0';
-        window.location.href = '/login';
+        // Only redirect to login if currently on a protected page
+        if (window.location.pathname.startsWith('/dashboard')) {
+          window.location.href = '/login';
+        }
       }
     }
 

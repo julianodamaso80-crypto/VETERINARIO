@@ -24,7 +24,7 @@ export default function PetSittersPage() {
   const [serviceType, setServiceType] = useState('');
   const [species, setSpecies] = useState('');
 
-  const { data: petSitters, isLoading } = useQuery({
+  const { data: petSitters, isLoading, isError } = useQuery({
     queryKey: ['pet-sitters', search, city, serviceType, species],
     queryFn: async () => {
       const response = await api.get('/pet-sitters', {
@@ -32,6 +32,7 @@ export default function PetSittersPage() {
       });
       return response.data;
     },
+    retry: 2,
   });
 
   return (
@@ -141,6 +142,10 @@ export default function PetSittersPage() {
         {isLoading ? (
           <div className="flex justify-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : isError ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500">Erro ao carregar cuidadores. Tente novamente.</p>
           </div>
         ) : petSitters?.petSitters?.length === 0 ? (
           <div className="text-center py-12">
