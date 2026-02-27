@@ -84,12 +84,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white border-r transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-[#E97700]/10 transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="flex items-center justify-between h-16 px-4 border-b">
-          <Link href="/dashboard" className="text-xl font-bold text-primary">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-[#E97700]/10">
+          <Link href="/dashboard" className="text-xl font-bold text-[#D1470B]">
             PetPro
           </Link>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
@@ -102,7 +102,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-md hover:bg-[#E97700]/10 hover:text-[#E97700] transition-colors"
               onClick={() => setSidebarOpen(false)}
             >
               <item.icon className="h-5 w-5" />
@@ -111,9 +111,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           ))}
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-white">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#E97700]/10 bg-white">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-[#E97700] text-white flex items-center justify-center font-semibold">
               {user.name.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
@@ -131,7 +131,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content */}
       <div className="lg:ml-64">
         {/* Top Bar */}
-        <header className="sticky top-0 z-30 h-16 bg-white border-b flex items-center px-4">
+        <header className="sticky top-0 z-30 h-16 bg-white border-b border-[#E97700]/10 flex items-center px-4">
           <button
             onClick={() => setSidebarOpen(true)}
             className="lg:hidden p-2 rounded-md hover:bg-gray-100"

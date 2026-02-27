@@ -38,23 +38,23 @@ export default function PetSittersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-10">
+      <header className="bg-white border-b border-[#E97700]/10 sticky top-0 z-10">
         <div className="container mx-auto py-4 px-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-primary">
+            <Link href="/" className="text-2xl font-bold text-[#D1470B]">
               PetPro Cuidadores
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/marketplace" className="text-gray-700 hover:text-primary">
+              <Link href="/marketplace" className="text-gray-700 hover:text-[#E97700] transition-colors">
                 Produtos
               </Link>
-              <Link href="/pet-sitters" className="text-gray-700 hover:text-primary">
+              <Link href="/pet-sitters" className="text-gray-700 hover:text-[#E97700] transition-colors">
                 Cuidadores
               </Link>
-              <Link href="/pet-sitters/cadastro" className="text-gray-700 hover:text-primary">
+              <Link href="/pet-sitters/cadastro" className="text-gray-700 hover:text-[#E97700] transition-colors">
                 Seja um Cuidador
               </Link>
-              <Link href="/login" className="text-gray-700 hover:text-primary">
+              <Link href="/login" className="text-gray-700 hover:text-[#E97700] transition-colors">
                 Entrar
               </Link>
             </nav>
@@ -63,12 +63,12 @@ export default function PetSittersPage() {
       </header>
 
       {/* Hero */}
-      <section className="bg-primary text-white py-12">
+      <section className="bg-gradient-to-r from-[#E97700] to-[#D1470B] text-white py-12">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">
             Encontre Cuidadores de Confianca
           </h1>
-          <p className="text-lg opacity-90 mb-8">
+          <p className="text-lg text-white/85 mb-8">
             Passeios, hospedagem, creche e mais. Profissionais verificados perto de voce.
           </p>
         </div>
@@ -176,7 +176,7 @@ export default function PetSittersPage() {
                       </div>
                     )}
                     {sitter.isVerified && (
-                      <span className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                      <span className="absolute top-2 right-2 bg-[#2671BC] text-white text-xs px-2 py-1 rounded flex items-center gap-1">
                         <Check className="h-3 w-3" />
                         Verificado
                       </span>
@@ -193,7 +193,7 @@ export default function PetSittersPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <Star className="h-4 w-4 text-[#FFB703] fill-[#FFB703]" />
                         <span className="font-medium">
                           {Number(sitter.averageRating).toFixed(1)}
                         </span>
@@ -276,14 +276,14 @@ export default function PetSittersPage() {
         )}
 
         {/* CTA */}
-        <Card className="mt-12 bg-primary text-white">
+        <Card className="mt-12 bg-gradient-to-r from-[#E97700] to-[#D1470B] text-white border-0">
           <CardContent className="py-8 text-center">
             <h2 className="text-2xl font-bold mb-2">Quer ser um Cuidador?</h2>
-            <p className="mb-4 opacity-90">
+            <p className="mb-4 text-white/85">
               Cadastre-se e comece a ganhar dinheiro cuidando de pets
             </p>
             <Link href="/pet-sitters/cadastro">
-              <Button variant="secondary" size="lg">
+              <Button className="bg-[#FFB703] hover:bg-[#E97700] text-[#1A2B3C] font-semibold" size="lg">
                 Cadastrar como Cuidador
               </Button>
             </Link>

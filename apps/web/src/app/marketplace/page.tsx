@@ -7,14 +7,37 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { formatCurrency } from '@/lib/utils';
-import { Search, Star, Truck, Filter, ShoppingCart } from 'lucide-react';
+import { Search, Star, Truck, ShoppingCart, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useCart } from '@/contexts/cart-context';
+import { useToast } from '@/hooks/use-toast';
 
 export default function MarketplacePage() {
   const [search, setSearch] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [freeShipping, setFreeShipping] = useState(false);
+
+  const { addItem } = useCart();
+  const { toast } = useToast();
+
+  const handleAddToCart = (product: any, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: Number(product.price),
+      sellerId: product.seller?.id || product.sellerId,
+      image: product.images?.[0]
+    });
+
+    toast({
+      title: "Adicionado ao carrinho",
+      description: `${product.title} foi adicionado ao seu carrinho.`
+    });
+  };
 
   const { data: categories } = useQuery({
     queryKey: ['marketplace-categories'],
@@ -38,21 +61,25 @@ export default function MarketplacePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-10">
+      <header className="bg-white border-b border-[#E97700]/10 sticky top-0 z-10">
         <div className="container mx-auto py-4 px-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-primary">
+            <Link href="/" className="text-2xl font-bold text-[#D1470B]">
               PetPro Marketplace
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/marketplace" className="text-gray-700 hover:text-primary">
+              <Link href="/marketplace" className="text-gray-700 hover:text-[#E97700] transition-colors">
                 Produtos
               </Link>
-              <Link href="/pet-sitters" className="text-gray-700 hover:text-primary">
+              <Link href="/pet-sitters" className="text-gray-700 hover:text-[#E97700] transition-colors">
                 Cuidadores
               </Link>
-              <Link href="/login" className="text-gray-700 hover:text-primary">
+              <Link href="/login" className="text-gray-700 hover:text-[#E97700] transition-colors">
                 Entrar
+              </Link>
+              <Link href="/carrinho" className="text-gray-700 hover:text-[#E97700] transition-colors relative flex items-center gap-2">
+                <ShoppingCart className="h-5 w-5" />
+                <span>Carrinho</span>
               </Link>
             </nav>
           </div>
@@ -152,7 +179,7 @@ export default function MarketplacePage() {
                     </div>
                   )}
                   {product.freeShipping && (
-                    <span className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
+                    <span className="absolute top-2 left-2 bg-[#2671BC] text-white text-xs px-2 py-1 rounded">
                       Frete Gratis
                     </span>
                   )}
@@ -161,7 +188,7 @@ export default function MarketplacePage() {
                   <p className="text-xs text-gray-500 mb-1">{product.seller?.name}</p>
                   <h3 className="font-medium line-clamp-2 mb-2">{product.title}</h3>
                   <div className="flex items-center gap-1 mb-2">
-                    <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                    <Star className="h-4 w-4 text-[#FFB703] fill-[#FFB703]" />
                     <span className="text-sm">
                       {Number(product.averageRating).toFixed(1)} ({product.totalReviews})
                     </span>
@@ -176,12 +203,22 @@ export default function MarketplacePage() {
                       </span>
                     )}
                   </div>
-                  <Link href={`/marketplace/${product.id}`}>
-                    <Button className="w-full mt-3" size="sm">
-                      <ShoppingCart className="h-4 w-4 mr-2" />
-                      Ver Produto
+                  <div className="flex gap-2 mt-3">
+                    <Button
+                      className="w-full flex-1"
+                      size="sm"
+                      onClick={(e) => handleAddToCart(product, e)}
+                    >
+                      <Plus className="h-4 w-4 mr-1" />
+                      Adicionar
                     </Button>
-                  </Link>
+                    <Link href={`/marketplace/${product.id}`} className="flex-1">
+                      <Button variant="outline" className="w-full" size="sm">
+                        <ShoppingCart className="h-4 w-4 mr-1" />
+                        Ver Produto
+                      </Button>
+                    </Link>
+                  </div>
                 </CardContent>
               </Card>
             ))}

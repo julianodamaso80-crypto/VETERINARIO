@@ -51,36 +51,36 @@ export default function DashboardPage() {
       title: 'Total de Tutores',
       value: dashboard?.totalTutors || 0,
       icon: Users,
-      gradient: 'from-blue-500 to-blue-600',
-      bgLight: 'bg-blue-50',
-      iconColor: 'text-blue-600',
+      gradient: 'from-[#E97700] to-[#D1470B]',
+      bgLight: 'bg-orange-50',
+      iconColor: 'text-[#E97700]',
       href: '/dashboard/tutores',
     },
     {
       title: 'Pets Ativos',
       value: dashboard?.totalPets || 0,
       icon: Dog,
-      gradient: 'from-green-500 to-emerald-600',
-      bgLight: 'bg-green-50',
-      iconColor: 'text-green-600',
+      gradient: 'from-[#2671BC] to-[#1B5090]',
+      bgLight: 'bg-blue-50',
+      iconColor: 'text-[#2671BC]',
       href: '/dashboard/pets',
     },
     {
       title: 'Agendamentos Hoje',
       value: dashboard?.todayAppointments || 0,
       icon: Calendar,
-      gradient: 'from-purple-500 to-violet-600',
-      bgLight: 'bg-purple-50',
-      iconColor: 'text-purple-600',
+      gradient: 'from-[#FFB703] to-[#E97700]',
+      bgLight: 'bg-amber-50',
+      iconColor: 'text-[#E97700]',
       href: '/dashboard/agenda',
     },
     {
       title: 'Receita do Mes',
       value: formatCurrency(dashboard?.monthRevenue || 0),
       icon: DollarSign,
-      gradient: 'from-emerald-500 to-teal-600',
-      bgLight: 'bg-emerald-50',
-      iconColor: 'text-emerald-600',
+      gradient: 'from-green-500 to-emerald-600',
+      bgLight: 'bg-green-50',
+      iconColor: 'text-green-600',
       trend: dashboard?.revenueGrowth,
       href: '/dashboard/financeiro',
     },
@@ -88,18 +88,18 @@ export default function DashboardPage() {
       title: 'Vacinas Pendentes',
       value: dashboard?.pendingVaccines || 0,
       icon: Syringe,
-      gradient: 'from-orange-500 to-amber-600',
-      bgLight: 'bg-orange-50',
-      iconColor: 'text-orange-600',
+      gradient: 'from-[#D1470B] to-[#A13508]',
+      bgLight: 'bg-red-50',
+      iconColor: 'text-[#D1470B]',
       href: '/dashboard/vacinas',
     },
     {
       title: 'Hospedagem Ativa',
       value: dashboard?.activeBoarding || 0,
       icon: Hotel,
-      gradient: 'from-pink-500 to-rose-600',
-      bgLight: 'bg-pink-50',
-      iconColor: 'text-pink-600',
+      gradient: 'from-[#8ECAE6] to-[#2671BC]',
+      bgLight: 'bg-sky-50',
+      iconColor: 'text-[#2671BC]',
       href: '/dashboard/hospedagem',
     },
   ];
@@ -109,28 +109,28 @@ export default function DashboardPage() {
       title: 'Novo Agendamento',
       icon: Calendar,
       href: '/dashboard/agenda?action=new',
-      gradient: 'from-blue-500 to-blue-600',
+      gradient: 'from-[#E97700] to-[#D1470B]',
       description: 'Agende consultas e servicos',
     },
     {
       title: 'Cadastrar Tutor',
       icon: Users,
       href: '/dashboard/tutores?action=new',
-      gradient: 'from-green-500 to-emerald-600',
+      gradient: 'from-[#2671BC] to-[#1B5090]',
       description: 'Adicione novos clientes',
     },
     {
       title: 'Cadastrar Pet',
       icon: Dog,
       href: '/dashboard/pets?action=new',
-      gradient: 'from-purple-500 to-violet-600',
+      gradient: 'from-[#FFB703] to-[#E97700]',
       description: 'Registre um novo pet',
     },
     {
       title: 'Nova Venda',
       icon: ShoppingCart,
       href: '/dashboard/vendas?action=new',
-      gradient: 'from-orange-500 to-amber-600',
+      gradient: 'from-[#D1470B] to-[#A13508]',
       description: 'Registre uma venda',
     },
   ];
@@ -149,17 +149,17 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8 pb-8">
       {/* Header com Boas-vindas */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 p-8 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#E97700] via-[#D1470B] to-[#A13508] p-8 text-white">
         <div className="absolute right-0 top-0 opacity-10">
           <PawPrint className="h-64 w-64 -translate-y-8 translate-x-8" />
         </div>
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="h-5 w-5 text-yellow-300" />
-            <span className="text-blue-100 text-sm font-medium">PetPro Dashboard</span>
+            <Sparkles className="h-5 w-5 text-[#FFB703]" />
+            <span className="text-orange-100 text-sm font-medium">PetPro Dashboard</span>
           </div>
           <h1 className="text-3xl font-bold mb-2">Bem-vindo de volta!</h1>
-          <p className="text-blue-100 max-w-xl">
+          <p className="text-orange-100 max-w-xl">
             Gerencie seu negocio pet de forma completa. Acompanhe tutores, pets, agendamentos,
             vendas e muito mais em um so lugar.
           </p>
@@ -258,7 +258,7 @@ export default function DashboardPage() {
                 <Link
                   key={feature.label}
                   href={feature.href}
-                  className="flex flex-col items-center gap-2 p-3 rounded-xl bg-gray-50 hover:bg-blue-50 hover:text-primary transition-colors group"
+                  className="flex flex-col items-center gap-2 p-3 rounded-xl bg-gray-50 hover:bg-orange-50 hover:text-[#E97700] transition-colors group"
                 >
                   <feature.icon className="h-6 w-6 text-gray-500 group-hover:text-primary transition-colors" />
                   <span className="text-xs font-medium text-center">{feature.label}</span>
@@ -325,20 +325,20 @@ export default function DashboardPage() {
       </div>
 
       {/* Banner Pet Sitters */}
-      <Card className="relative overflow-hidden border-0 shadow-card bg-gradient-to-br from-purple-500 via-violet-500 to-purple-600 text-white">
+      <Card className="relative overflow-hidden border-0 shadow-card bg-gradient-to-br from-[#2671BC] via-[#1B5090] to-[#143D70] text-white">
         <CardContent className="p-6 md:p-8">
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-3 py-1 bg-white/20 rounded-full text-xs font-medium">Novo</span>
+                <span className="px-3 py-1 bg-[#FFB703]/30 text-[#FFB703] rounded-full text-xs font-semibold">Novo</span>
               </div>
               <h3 className="text-2xl font-bold mb-2">Marketplace & Pet Sitters</h3>
-              <p className="text-purple-100 mb-4">
+              <p className="text-[#8ECAE6] mb-4">
                 Conecte-se com pet sitters qualificados e explore produtos para seus clientes no nosso marketplace integrado.
               </p>
               <div className="flex gap-3">
                 <Link href="/dashboard/pet-sitters">
-                  <Button className="bg-white text-purple-600 hover:bg-purple-50">
+                  <Button className="bg-[#FFB703] text-[#1A2B3C] hover:bg-[#E97700] hover:text-white font-semibold">
                     Ver Pet Sitters
                   </Button>
                 </Link>

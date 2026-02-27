@@ -36,49 +36,57 @@ const features = [
     icon: Stethoscope,
     title: 'Prontuario Eletronico',
     description: 'Historico medico completo, prescricoes digitais e anexo de exames em um so lugar.',
-    color: 'bg-blue-500',
+    color: 'bg-[#2671BC]',
+    lightBg: 'bg-[#2671BC]/10',
   },
   {
     icon: Syringe,
     title: 'Carteira de Vacinas',
     description: 'Controle automatico de vacinas com alertas e lembretes via WhatsApp para tutores.',
-    color: 'bg-green-500',
+    color: 'bg-[#D1470B]',
+    lightBg: 'bg-[#D1470B]/10',
   },
   {
     icon: Calendar,
     title: 'Agenda Inteligente',
     description: 'Agendamento visual com confirmacao automatica e gestao de multiplos profissionais.',
-    color: 'bg-purple-500',
+    color: 'bg-[#E97700]',
+    lightBg: 'bg-[#E97700]/10',
   },
   {
     icon: HomeIcon,
     title: 'Hotel & Daycare',
     description: 'Check-in digital, updates diarios com fotos e controle completo de hospedagem.',
-    color: 'bg-orange-500',
+    color: 'bg-[#FFB703]',
+    lightBg: 'bg-[#FFB703]/10',
   },
   {
     icon: ShoppingBag,
     title: 'Vendas & Estoque',
     description: 'PDV integrado, controle de estoque automatico e alertas de produtos acabando.',
-    color: 'bg-pink-500',
+    color: 'bg-[#8ECAE6]',
+    lightBg: 'bg-[#8ECAE6]/10',
   },
   {
     icon: MessageCircle,
     title: 'WhatsApp Business',
     description: 'Integracao nativa para lembretes, confirmacoes e comunicacao com clientes.',
-    color: 'bg-emerald-500',
+    color: 'bg-[#2671BC]',
+    lightBg: 'bg-[#2671BC]/10',
   },
   {
     icon: BarChart3,
     title: 'Analytics Completo',
     description: 'Metricas em tempo real, relatorios de faturamento e insights do negocio.',
-    color: 'bg-indigo-500',
+    color: 'bg-[#E97700]',
+    lightBg: 'bg-[#E97700]/10',
   },
   {
     icon: Shield,
     title: 'Seguro & Confiavel',
     description: 'Dados isolados por negocio, backups automaticos e criptografia de ponta.',
-    color: 'bg-red-500',
+    color: 'bg-[#D1470B]',
+    lightBg: 'bg-[#D1470B]/10',
   },
 ];
 
@@ -184,41 +192,50 @@ const faqs = [
   },
 ];
 
+const businessTypes = [
+  { icon: Stethoscope, label: 'Clinica Veterinaria', bg: 'bg-[#2671BC]/10 group-hover:bg-[#2671BC]/20', iconColor: 'text-[#2671BC]' },
+  { icon: ShoppingBag, label: 'Pet Shop', bg: 'bg-[#E97700]/10 group-hover:bg-[#E97700]/20', iconColor: 'text-[#E97700]' },
+  { icon: Sparkles, label: 'Banho e Tosa', bg: 'bg-[#8ECAE6]/20 group-hover:bg-[#8ECAE6]/30', iconColor: 'text-[#2671BC]' },
+  { icon: HomeIcon, label: 'Hotel Pet', bg: 'bg-[#FFB703]/10 group-hover:bg-[#FFB703]/20', iconColor: 'text-[#E97700]' },
+  { icon: Users, label: 'Daycare', bg: 'bg-[#D1470B]/10 group-hover:bg-[#D1470B]/20', iconColor: 'text-[#D1470B]' },
+  { icon: Heart, label: 'Centro de Adocao', bg: 'bg-[#FFB703]/10 group-hover:bg-[#FFB703]/20', iconColor: 'text-[#D1470B]' },
+];
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white font-body">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#E97700]/10">
         <div className="container mx-auto py-4 px-4">
           <nav className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="bg-primary rounded-xl p-2">
+            <div className="flex items-center gap-2.5">
+              <div className="bg-[#E97700] rounded-xl p-2 shadow-sm">
                 <PawPrint className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-heading font-bold text-[#D1470B]">
                 PetPro
               </span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-gray-600 hover:text-primary transition-colors">
+              <a href="#features" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
                 Recursos
               </a>
-              <a href="#pricing" className="text-gray-600 hover:text-primary transition-colors">
+              <a href="#pricing" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
                 Precos
               </a>
-              <a href="#testimonials" className="text-gray-600 hover:text-primary transition-colors">
+              <a href="#testimonials" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
                 Depoimentos
               </a>
-              <a href="#faq" className="text-gray-600 hover:text-primary transition-colors">
+              <a href="#faq" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
                 FAQ
               </a>
             </div>
             <div className="flex items-center gap-3">
               <Link href="/login">
-                <Button variant="ghost" className="hidden sm:flex">Entrar</Button>
+                <Button variant="ghost" className="hidden sm:flex text-gray-700 hover:text-[#E97700]">Entrar</Button>
               </Link>
               <Link href="/register">
-                <Button className="bg-gradient-to-r from-primary to-blue-600 hover:opacity-90 transition-opacity">
+                <Button className="bg-[#E97700] hover:bg-[#D1470B] text-white transition-colors shadow-sm">
                   Comecar Gratis
                 </Button>
               </Link>
@@ -229,7 +246,6 @@ export default function Home() {
 
       {/* Hero Section with Banner */}
       <section className="relative pt-24 overflow-hidden">
-        {/* Hero Banner Image */}
         <div className="relative w-full">
           <Image
             src="/images/hero-banner-2.jpg"
@@ -239,23 +255,23 @@ export default function Home() {
             className="w-full h-auto object-cover"
             priority
           />
-          {/* Overlay with CTA */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent flex items-center">
+          {/* Overlay with warm tint */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#D1470B]/70 via-[#E97700]/40 to-transparent flex items-center">
             <div className="container mx-auto px-4">
               <div className="max-w-xl">
-                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
-                  <Sparkles className="h-4 w-4" />
+                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/20">
+                  <Sparkles className="h-4 w-4 text-[#FFB703]" />
                   <span className="text-sm font-medium">Plataforma #1 para Negocios Pet</span>
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                  Sistema Completo de Gestao Pet
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                  Gestao Pet que faz seu negocio crescer
                 </h1>
                 <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed drop-shadow">
-                  Clinicas veterinarias, pet shops, hoteis e daycares em uma unica plataforma.
+                  Clinicas veterinarias, pet shops, hoteis e daycares em uma unica plataforma inteligente.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href="/register">
-                    <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-6 h-auto shadow-lg">
+                    <Button size="lg" className="bg-[#FFB703] hover:bg-[#E97700] text-[#1A2B3C] font-semibold text-lg px-8 py-6 h-auto shadow-lg transition-colors">
                       <Zap className="h-5 w-5 mr-2" />
                       Comecar Gratis
                     </Button>
@@ -269,11 +285,11 @@ export default function Home() {
                 </div>
                 <div className="flex flex-wrap items-center gap-6 mt-8 text-sm text-white/80">
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-green-400" />
+                    <Check className="h-4 w-4 text-[#FFB703]" />
                     <span>Setup em 5 minutos</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-green-400" />
+                    <Check className="h-4 w-4 text-[#FFB703]" />
                     <span>Sem cartao de credito</span>
                   </div>
                 </div>
@@ -297,13 +313,13 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-gray-900 py-12">
+      <section className="bg-[#2671BC] py-14">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-gray-400">{stat.label}</div>
+                <div className="text-4xl md:text-5xl font-heading font-bold text-white mb-2">{stat.value}</div>
+                <div className="text-[#8ECAE6] font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -311,14 +327,14 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 bg-gray-50">
+      <section id="features" className="py-24 bg-[#FDF6EC]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-[#E97700]/10 text-[#E97700] px-4 py-2 rounded-full mb-4 border border-[#E97700]/20">
               <Sparkles className="h-4 w-4" />
-              <span className="text-sm font-medium">Recursos Poderosos</span>
+              <span className="text-sm font-semibold">Recursos Poderosos</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
               Tudo que voce precisa em um so lugar
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -333,7 +349,7 @@ export default function Home() {
                   <div className={`w-14 h-14 rounded-2xl ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                     <feature.icon className="h-7 w-7 text-white" />
                   </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  <CardTitle className="text-xl font-heading">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">{feature.description}</p>
@@ -348,7 +364,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
               Para todo tipo de negocio pet
             </h2>
             <p className="text-xl text-gray-600">
@@ -357,17 +373,10 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {[
-              { icon: Stethoscope, label: 'Clinica Veterinaria', color: 'blue' },
-              { icon: ShoppingBag, label: 'Pet Shop', color: 'pink' },
-              { icon: Sparkles, label: 'Banho e Tosa', color: 'purple' },
-              { icon: HomeIcon, label: 'Hotel Pet', color: 'orange' },
-              { icon: Users, label: 'Daycare', color: 'green' },
-              { icon: Heart, label: 'Centro de Adocao', color: 'red' },
-            ].map((type, i) => (
+            {businessTypes.map((type, i) => (
               <div key={i} className="group cursor-pointer">
-                <div className={`aspect-square rounded-2xl bg-${type.color}-50 flex flex-col items-center justify-center p-6 group-hover:bg-${type.color}-100 transition-colors`}>
-                  <type.icon className={`h-12 w-12 text-${type.color}-600 mb-4`} />
+                <div className={`aspect-square rounded-2xl ${type.bg} flex flex-col items-center justify-center p-6 transition-all duration-300`}>
+                  <type.icon className={`h-12 w-12 ${type.iconColor} mb-4`} />
                   <span className="text-sm font-medium text-gray-700 text-center">{type.label}</span>
                 </div>
               </div>
@@ -377,13 +386,13 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="py-24 bg-gradient-to-br from-primary to-blue-700">
+      <section id="testimonials" className="py-24 bg-gradient-to-br from-[#E97700] to-[#D1470B]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
               Amado por Negocios Pet
             </h2>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-white/80">
               Veja o que nossos clientes falam sobre o PetPro
             </p>
           </div>
@@ -393,20 +402,20 @@ export default function Home() {
               <Card key={i} className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
                 <CardContent className="pt-6">
                   <div className="flex gap-1 mb-4">
-                    {Array(testimonial.rating).fill(0).map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    {Array(testimonial.rating).fill(0).map((_, j) => (
+                      <Star key={j} className="h-5 w-5 text-[#FFB703] fill-[#FFB703]" />
                     ))}
                   </div>
                   <p className="text-white/90 mb-6 text-lg leading-relaxed">
-                    "{testimonial.content}"
+                    &ldquo;{testimonial.content}&rdquo;
                   </p>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 rounded-full bg-[#FFB703]/30 flex items-center justify-center font-bold text-white">
                       {testimonial.avatar}
                     </div>
                     <div>
                       <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-blue-200 text-sm">{testimonial.role}</div>
+                      <div className="text-white/60 text-sm">{testimonial.role}</div>
                     </div>
                   </div>
                 </CardContent>
@@ -417,14 +426,14 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-24 bg-gray-50">
+      <section id="pricing" className="py-24 bg-[#FDF6EC]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-[#E97700]/10 text-[#E97700] px-4 py-2 rounded-full mb-4 border border-[#E97700]/20">
               <Zap className="h-4 w-4" />
-              <span className="text-sm font-medium">Precos Simples</span>
+              <span className="text-sm font-semibold">Precos Simples</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
               Escolha seu plano ideal
             </h2>
             <p className="text-xl text-gray-600">
@@ -434,31 +443,34 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {pricingPlans.map((plan, i) => (
-              <Card key={i} className={`relative ${plan.highlighted ? 'border-primary shadow-xl scale-105' : 'border-gray-200'}`}>
+              <Card key={i} className={`relative ${plan.highlighted ? 'border-[#E97700] border-2 shadow-xl scale-105' : 'border-gray-200'}`}>
                 {plan.highlighted && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-sm font-medium px-4 py-1 rounded-full">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#E97700] text-white text-sm font-semibold px-4 py-1 rounded-full">
                     Mais Popular
                   </div>
                 )}
                 <CardHeader className="text-center pb-2">
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                  <CardTitle className="text-2xl font-heading">{plan.name}</CardTitle>
                   <CardDescription>{plan.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <div className="mb-6">
-                    <span className="text-5xl font-bold text-gray-900">{plan.price}</span>
+                    <span className="text-5xl font-heading font-bold text-gray-900">{plan.price}</span>
                     {plan.period && <span className="text-gray-500">{plan.period}</span>}
                   </div>
                   <ul className="space-y-3 mb-8 text-left">
                     {plan.features.map((feature, j) => (
                       <li key={j} className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#E97700] flex-shrink-0" />
                         <span className="text-gray-600">{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <Link href="/register">
-                    <Button className={`w-full ${plan.highlighted ? 'bg-primary' : ''}`} variant={plan.highlighted ? 'default' : 'outline'}>
+                    <Button
+                      className={`w-full ${plan.highlighted ? 'bg-[#E97700] hover:bg-[#D1470B] text-white' : ''}`}
+                      variant={plan.highlighted ? 'default' : 'outline'}
+                    >
                       {plan.cta}
                     </Button>
                   </Link>
@@ -473,7 +485,7 @@ export default function Home() {
       <section id="faq" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
               Perguntas Frequentes
             </h2>
             <p className="text-xl text-gray-600">
@@ -483,10 +495,10 @@ export default function Home() {
 
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, i) => (
-              <Card key={i} className="border-gray-200">
+              <Card key={i} className="border-gray-200 hover:border-[#E97700]/30 transition-colors">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg font-medium flex items-center gap-3">
-                    <ChevronRight className="h-5 w-5 text-primary" />
+                    <ChevronRight className="h-5 w-5 text-[#E97700]" />
                     {faq.question}
                   </CardTitle>
                 </CardHeader>
@@ -500,26 +512,26 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-gradient-to-r from-primary to-blue-600 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-[#2671BC] to-[#1B5090] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-[#8ECAE6] rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFB703] rounded-full blur-3xl" />
         </div>
         <div className="container mx-auto px-4 text-center relative">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
             Pronto para Transformar seu Negocio?
           </h2>
-          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-[#8ECAE6] mb-10 max-w-2xl mx-auto">
             Junte-se a centenas de estabelecimentos que ja usam PetPro para crescer
           </p>
           <Link href="/register">
-            <Button size="lg" variant="secondary" className="text-lg px-10 py-6 h-auto">
+            <Button size="lg" className="bg-[#FFB703] hover:bg-[#E97700] text-[#1A2B3C] font-semibold text-lg px-10 py-6 h-auto shadow-lg transition-colors">
               <Zap className="h-5 w-5 mr-2" />
               Comecar Gratis Agora
             </Button>
           </Link>
-          <p className="mt-6 text-blue-200 text-sm">
-            Nao precisa de cartao de credito • Setup em 5 minutos
+          <p className="mt-6 text-[#8ECAE6]/80 text-sm">
+            Nao precisa de cartao de credito &bull; Setup em 5 minutos
           </p>
         </div>
       </section>
@@ -530,23 +542,23 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="bg-primary rounded-xl p-2">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="bg-[#E97700] rounded-xl p-2">
                   <PawPrint className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold">PetPro</span>
+                <span className="text-2xl font-heading font-bold">PetPro</span>
               </div>
               <p className="text-gray-400 mb-6">
                 A plataforma completa para gestao de negocios pet.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-[#FFB703] transition-colors">
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-[#FFB703] transition-colors">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#" className="text-gray-400 hover:text-[#FFB703] transition-colors">
                   <Linkedin className="h-5 w-5" />
                 </a>
               </div>
@@ -554,40 +566,40 @@ export default function Home() {
 
             {/* Product */}
             <div>
-              <h4 className="font-semibold mb-4">Produto</h4>
+              <h4 className="font-heading font-semibold mb-4">Produto</h4>
               <ul className="space-y-3 text-gray-400">
-                <li><a href="#features" className="hover:text-white transition-colors">Recursos</a></li>
-                <li><a href="#pricing" className="hover:text-white transition-colors">Precos</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Integracao WhatsApp</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Marketplace</a></li>
+                <li><a href="#features" className="hover:text-[#FFB703] transition-colors">Recursos</a></li>
+                <li><a href="#pricing" className="hover:text-[#FFB703] transition-colors">Precos</a></li>
+                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Integracao WhatsApp</a></li>
+                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Marketplace</a></li>
               </ul>
             </div>
 
             {/* Company */}
             <div>
-              <h4 className="font-semibold mb-4">Empresa</h4>
+              <h4 className="font-heading font-semibold mb-4">Empresa</h4>
               <ul className="space-y-3 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Sobre</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Carreiras</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Parceiros</a></li>
+                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Sobre</a></li>
+                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Carreiras</a></li>
+                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Parceiros</a></li>
               </ul>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="font-semibold mb-4">Contato</h4>
+              <h4 className="font-heading font-semibold mb-4">Contato</h4>
               <ul className="space-y-3 text-gray-400">
                 <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
+                  <Mail className="h-4 w-4 text-[#E97700]" />
                   <span>contato@petpro.site</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" />
+                  <Phone className="h-4 w-4 text-[#E97700]" />
                   <span>(11) 99999-9999</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
+                  <MapPin className="h-4 w-4 text-[#E97700]" />
                   <span>Sao Paulo, Brasil</span>
                 </li>
               </ul>
@@ -596,12 +608,12 @@ export default function Home() {
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm">
-              2024 PetPro. Todos os direitos reservados.
+              2025 PetPro. Todos os direitos reservados.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
-              <a href="#" className="hover:text-white transition-colors">Privacidade</a>
-              <a href="#" className="hover:text-white transition-colors">Cookies</a>
+              <a href="#" className="hover:text-[#FFB703] transition-colors">Termos de Uso</a>
+              <a href="#" className="hover:text-[#FFB703] transition-colors">Privacidade</a>
+              <a href="#" className="hover:text-[#FFB703] transition-colors">Cookies</a>
             </div>
           </div>
         </div>
