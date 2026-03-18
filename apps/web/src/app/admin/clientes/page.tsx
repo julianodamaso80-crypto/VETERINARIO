@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = "force-dynamic";
+
 import StatusBadge from '@/components/admin/StatusBadge';
 import EmptyState from '@/components/admin/EmptyState';
 import { mockClients, formatCurrency, formatDate, timeAgo, getPlanLabel, getStatusLabel, SaaSClient } from '@/data/admin-mock';
