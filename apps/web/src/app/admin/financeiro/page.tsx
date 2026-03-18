@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = "force-dynamic";
-
 import StatsCard from '@/components/admin/StatsCard';
 import StatusBadge from '@/components/admin/StatusBadge';
 import { mockTransactions, mockClients, mrrHistory, formatCurrency, formatDate } from '@/data/admin-mock';

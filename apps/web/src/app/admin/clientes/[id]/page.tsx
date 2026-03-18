@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = "force-dynamic";
-
 import StatusBadge from '@/components/admin/StatusBadge';
 import StatsCard from '@/components/admin/StatsCard';
 import {
