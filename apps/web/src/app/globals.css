@@ -104,6 +104,53 @@
 }
 
 @layer utilities {
+  /* ===== KINETIC ORANGE — BRUTALIST ===== */
+  .font-archivo {
+    font-family: var(--font-archivo-black), system-ui, sans-serif;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .font-mono-brut {
+    font-family: var(--font-space-mono), ui-monospace, monospace;
+    letter-spacing: -0.02em;
+  }
+
+  .kinetic-selection ::selection {
+    background: #000000;
+    color: #FF4D00;
+  }
+
+  /* Marquee — scroll infinito linear */
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .animate-marquee-left {
+    animation: marquee-left 30s linear infinite;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 30s linear infinite;
+  }
+
+  /* Spin para indicador circular */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 12s linear infinite;
+  }
+
   /* Gradientes Hot Summer */
   .bg-gradient-petpro {
     background: linear-gradient(135deg, #E97700 0%, #D1470B 100%);

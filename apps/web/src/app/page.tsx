@@ -1,620 +1,652 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-  PawPrint,
-  Calendar,
-  Stethoscope,
-  Syringe,
-  Home as HomeIcon,
-  ShoppingBag,
-  MessageCircle,
-  BarChart3,
-  Shield,
-  Clock,
-  Users,
-  Star,
-  Check,
-  ChevronRight,
-  Heart,
-  Sparkles,
-  TrendingUp,
-  Zap,
-  Building2,
-  Phone,
-  Mail,
-  MapPin,
-  Facebook,
+  ArrowDown,
+  ArrowUpRight,
   Instagram,
   Linkedin,
-  ArrowRight,
+  Facebook,
+  PawPrint,
 } from 'lucide-react';
 
-const features = [
+const services = [
   {
-    icon: Stethoscope,
+    index: '01',
     title: 'Prontuario Eletronico',
-    description: 'Historico medico completo, prescricoes digitais e anexo de exames em um so lugar.',
-    color: 'bg-[#2671BC]',
-    lightBg: 'bg-[#2671BC]/10',
+    tags: ['Historico medico', 'Prescricoes', 'Exames'],
   },
   {
-    icon: Syringe,
+    index: '02',
     title: 'Carteira de Vacinas',
-    description: 'Controle automatico de vacinas com alertas e lembretes via WhatsApp para tutores.',
-    color: 'bg-[#D1470B]',
-    lightBg: 'bg-[#D1470B]/10',
+    tags: ['Alertas WhatsApp', 'Automacao', 'Lembretes'],
   },
   {
-    icon: Calendar,
+    index: '03',
     title: 'Agenda Inteligente',
-    description: 'Agendamento visual com confirmacao automatica e gestao de multiplos profissionais.',
-    color: 'bg-[#E97700]',
-    lightBg: 'bg-[#E97700]/10',
+    tags: ['Multi profissional', 'Confirmacao', 'Visual'],
   },
   {
-    icon: HomeIcon,
+    index: '04',
     title: 'Hotel & Daycare',
-    description: 'Check-in digital, updates diarios com fotos e controle completo de hospedagem.',
-    color: 'bg-[#FFB703]',
-    lightBg: 'bg-[#FFB703]/10',
+    tags: ['Check-in digital', 'Updates com fotos', 'Controle'],
   },
   {
-    icon: ShoppingBag,
-    title: 'Vendas & Estoque',
-    description: 'PDV integrado, controle de estoque automatico e alertas de produtos acabando.',
-    color: 'bg-[#8ECAE6]',
-    lightBg: 'bg-[#8ECAE6]/10',
+    index: '05',
+    title: 'PDV & Estoque',
+    tags: ['Vendas integradas', 'Alertas', 'Tempo real'],
   },
   {
-    icon: MessageCircle,
+    index: '06',
     title: 'WhatsApp Business',
-    description: 'Integracao nativa para lembretes, confirmacoes e comunicacao com clientes.',
-    color: 'bg-[#2671BC]',
-    lightBg: 'bg-[#2671BC]/10',
-  },
-  {
-    icon: BarChart3,
-    title: 'Analytics Completo',
-    description: 'Metricas em tempo real, relatorios de faturamento e insights do negocio.',
-    color: 'bg-[#E97700]',
-    lightBg: 'bg-[#E97700]/10',
-  },
-  {
-    icon: Shield,
-    title: 'Seguro & Confiavel',
-    description: 'Dados isolados por negocio, backups automaticos e criptografia de ponta.',
-    color: 'bg-[#D1470B]',
-    lightBg: 'bg-[#D1470B]/10',
+    tags: ['API nativa', 'Mensagens', 'Confirmacao'],
   },
 ];
 
-const stats = [
-  { value: '500+', label: 'Negocios Ativos' },
-  { value: '50k+', label: 'Pets Cadastrados' },
-  { value: '100k+', label: 'Agendamentos/Mes' },
-  { value: '99.9%', label: 'Uptime Garantido' },
+const pets = [
+  {
+    src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80',
+    label: 'CAES // 01',
+    meta: 'Consultas / Vacinas',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&q=80',
+    label: 'GATOS // 02',
+    meta: 'Prontuario / Exames',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1200&q=80',
+    label: 'FILHOTES // 03',
+    meta: 'Protocolo / Hotel',
+  },
+];
+
+const businessTypes = [
+  {
+    label: 'Clinica Veterinaria',
+    img: 'https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    label: 'Pet Shop',
+    img: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    label: 'Banho e Tosa',
+    img: 'https://images.unsplash.com/photo-1535294435445-d7249524ef2e?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    label: 'Hotel Pet',
+    img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=900&q=80',
+  },
 ];
 
 const testimonials = [
   {
+    quote:
+      'O PetPro transformou nossa clinica. Antes perdiamos tempo com papel, agora tudo e digital e os tutores adoram receber avisos pelo WhatsApp.',
     name: 'Dra. Marina Silva',
-    role: 'Clinica VetCare',
-    avatar: 'MS',
-    content: 'O PetPro transformou nossa clinica. Antes perdiamos tempo com papel, agora tudo e digital e os tutores adoram receber as vacinas pelo WhatsApp!',
-    rating: 5,
+    role: 'Clinica VetCare / Sao Paulo',
   },
   {
+    quote:
+      'Controle de estoque perfeito. Nunca mais fiquei sem racao para vender. O sistema avisa quando esta acabando.',
     name: 'Ricardo Almeida',
-    role: 'Pet Shop Amigo Fiel',
-    avatar: 'RA',
-    content: 'Controle de estoque perfeito! Nunca mais fiquei sem racao para vender. O sistema avisa quando esta acabando.',
-    rating: 5,
+    role: 'Pet Shop Amigo Fiel / RJ',
   },
   {
+    quote:
+      'Tutores ficam tranquilos com updates diarios. Nossa taxa de retorno subiu 40% desde que usamos o PetPro.',
     name: 'Carla Mendes',
-    role: 'Hotel Pet Paradise',
-    avatar: 'CM',
-    content: 'Os tutores ficam tranquilos porque mandam updates diarios com foto. A taxa de retorno aumentou 40% desde que usamos o PetPro.',
-    rating: 5,
+    role: 'Hotel Pet Paradise / MG',
   },
 ];
 
 const pricingPlans = [
   {
     name: 'Starter',
-    price: 'Gratis',
-    description: 'Para quem esta comecando',
-    features: [
-      'Ate 50 pets cadastrados',
-      'Agendamentos ilimitados',
-      'Prontuario basico',
-      '1 usuario',
-      'Suporte por email',
-    ],
-    cta: 'Comecar Gratis',
+    price: 'R$ 0',
+    period: '/ gratis para sempre',
+    features: ['50 pets', 'Agenda ilimitada', 'Prontuario basico', '1 usuario'],
     highlighted: false,
   },
   {
-    name: 'Profissional',
+    name: 'Pro',
     price: 'R$ 149',
-    period: '/mes',
-    description: 'Para negocios em crescimento',
+    period: '/ mes',
     features: [
       'Pets ilimitados',
-      'Todos os modulos',
       'WhatsApp integrado',
-      'Ate 5 usuarios',
+      '5 usuarios',
       'Relatorios avancados',
       'Suporte prioritario',
     ],
-    cta: 'Testar 14 dias gratis',
     highlighted: true,
   },
   {
     name: 'Enterprise',
-    price: 'Sob consulta',
-    description: 'Para redes e franquias',
-    features: [
-      'Multi-unidades',
-      'API personalizada',
-      'Usuarios ilimitados',
-      'Integracao ERP',
-      'Gerente de conta',
-      'SLA garantido',
-    ],
-    cta: 'Falar com Vendas',
+    price: 'Custom',
+    period: '/ sob consulta',
+    features: ['Multi unidades', 'API dedicada', 'Usuarios ilimitados', 'SLA garantido'],
     highlighted: false,
   },
 ];
 
-const faqs = [
-  {
-    question: 'Preciso instalar algum software?',
-    answer: 'Nao! O PetPro funciona 100% na nuvem. Basta acessar pelo navegador de qualquer dispositivo - computador, tablet ou celular.',
-  },
-  {
-    question: 'Meus dados estao seguros?',
-    answer: 'Absolutamente. Utilizamos criptografia de ponta, servidores seguros e backups automaticos diarios. Seus dados sao completamente isolados de outros negocios.',
-  },
-  {
-    question: 'Como funciona a integracao com WhatsApp?',
-    answer: 'Voce conecta seu WhatsApp Business escaneando um QR Code. Depois disso, o sistema envia automaticamente lembretes de agendamentos, vacinas e muito mais.',
-  },
-  {
-    question: 'Posso migrar meus dados de outro sistema?',
-    answer: 'Sim! Nossa equipe ajuda na migracao de dados de planilhas ou outros sistemas. O processo e rapido e sem dor de cabeca.',
-  },
-  {
-    question: 'Tem contrato de fidelidade?',
-    answer: 'Nao. Voce pode cancelar a qualquer momento. Acreditamos que voce fica porque gosta, nao porque esta preso.',
-  },
+const stats = [
+  { value: '500+', label: 'Negocios Ativos' },
+  { value: '50K', label: 'Pets Cadastrados' },
+  { value: '100K', label: 'Agendamentos / Mes' },
+  { value: '99.9%', label: 'Uptime Garantido' },
 ];
 
-const businessTypes = [
-  { icon: Stethoscope, label: 'Clinica Veterinaria', bg: 'bg-[#2671BC]/10 group-hover:bg-[#2671BC]/20', iconColor: 'text-[#2671BC]' },
-  { icon: ShoppingBag, label: 'Pet Shop', bg: 'bg-[#E97700]/10 group-hover:bg-[#E97700]/20', iconColor: 'text-[#E97700]' },
-  { icon: Sparkles, label: 'Banho e Tosa', bg: 'bg-[#8ECAE6]/20 group-hover:bg-[#8ECAE6]/30', iconColor: 'text-[#2671BC]' },
-  { icon: HomeIcon, label: 'Hotel Pet', bg: 'bg-[#FFB703]/10 group-hover:bg-[#FFB703]/20', iconColor: 'text-[#E97700]' },
-  { icon: Users, label: 'Daycare', bg: 'bg-[#D1470B]/10 group-hover:bg-[#D1470B]/20', iconColor: 'text-[#D1470B]' },
-  { icon: Heart, label: 'Centro de Adocao', bg: 'bg-[#FFB703]/10 group-hover:bg-[#FFB703]/20', iconColor: 'text-[#D1470B]' },
-];
+const marqueeItems = ['PETPRO', 'GESTAO', 'VETERINARIA', 'PETSHOP', 'HOTEL', 'DAYCARE'];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white font-body">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#E97700]/10">
-        <div className="container mx-auto py-4 px-4">
-          <nav className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="bg-[#E97700] rounded-xl p-2 shadow-sm">
-                <PawPrint className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-2xl font-heading font-bold text-[#D1470B]">
-                PetPro
-              </span>
-            </div>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
-                Recursos
-              </a>
-              <a href="#pricing" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
-                Precos
-              </a>
-              <a href="#testimonials" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
-                Depoimentos
-              </a>
-              <a href="#faq" className="text-gray-600 hover:text-[#E97700] transition-colors font-medium text-sm">
-                FAQ
-              </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link href="/login">
-                <Button variant="ghost" className="hidden sm:flex text-gray-700 hover:text-[#E97700]">Entrar</Button>
-              </Link>
-              <Link href="/register">
-                <Button className="bg-[#E97700] hover:bg-[#D1470B] text-white transition-colors shadow-sm">
-                  Comecar Gratis
-                </Button>
-              </Link>
-            </div>
-          </nav>
+    <div className="min-h-screen bg-[#FF4D00] text-black font-mono-brut kinetic-selection overflow-x-hidden">
+      {/* ==================== FLOATING NAV ==================== */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-5 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="w-10 h-10 bg-black flex items-center justify-center">
+            <PawPrint className="h-5 w-5 text-[#FF4D00]" strokeWidth={2.5} />
+          </div>
+          <span className="font-archivo text-xl">PETPRO</span>
+        </Link>
+
+        <nav className="hidden md:flex bg-black rounded-full px-2 py-2">
+          {[
+            { href: '#servicos', label: 'SERVICOS' },
+            { href: '#trabalhos', label: 'PETS' },
+            { href: '#planos', label: 'PLANOS' },
+            { href: '#contato', label: 'CONTATO' },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-white text-[12px] font-bold tracking-tight uppercase px-5 py-2 rounded-full transition-colors duration-200 hover:bg-white hover:text-black"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <a
+            href="#"
+            aria-label="Instagram"
+            className="w-10 h-10 border-2 border-black flex items-center justify-center bg-[#FF4D00] hover:bg-black hover:text-[#FF4D00] transition-colors duration-200"
+          >
+            <Instagram className="h-4 w-4" strokeWidth={2.5} />
+          </a>
+          <a
+            href="#"
+            aria-label="LinkedIn"
+            className="w-10 h-10 border-2 border-black flex items-center justify-center bg-[#FF4D00] hover:bg-black hover:text-[#FF4D00] transition-colors duration-200"
+          >
+            <Linkedin className="h-4 w-4" strokeWidth={2.5} />
+          </a>
         </div>
       </header>
 
-      {/* Hero Section with Banner */}
-      <section className="relative pt-24 overflow-hidden">
-        <div className="relative w-full">
-          <Image
-            src="/images/hero-banner-2.jpg"
-            alt="PetPro - Sistema Completo de Gestao para Negocios Pet"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover"
-            priority
-          />
-          {/* Overlay with warm tint */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#D1470B]/70 via-[#E97700]/40 to-transparent flex items-center">
-            <div className="container mx-auto px-4">
-              <div className="max-w-xl">
-                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/20">
-                  <Sparkles className="h-4 w-4 text-[#FFB703]" />
-                  <span className="text-sm font-medium">Plataforma #1 para Negocios Pet</span>
+      {/* ==================== HERO ==================== */}
+      <section className="pt-32 md:pt-40 pb-0">
+        <div className="px-6 md:px-10">
+          {/* Top meta row */}
+          <div className="flex items-center justify-between text-[11px] font-bold uppercase mb-10 md:mb-16">
+            <span>[ v.4 / 2026 ]</span>
+            <span className="hidden md:inline">PLATAFORMA // GESTAO PET</span>
+            <span>BRASIL / SP</span>
+          </div>
+
+          {/* Giant headline */}
+          <h1
+            className="font-archivo text-center leading-[0.85] text-black"
+            style={{ fontSize: 'clamp(4rem, 16vw, 20rem)' }}
+          >
+            PETPRO
+          </h1>
+        </div>
+
+        {/* Metadata row divider */}
+        <div className="mt-10 md:mt-16 border-t-2 border-black">
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center px-6 md:px-10 py-8 gap-6">
+            {/* Left — Based in */}
+            <div>
+              <div className="text-[11px] font-bold uppercase mb-2">[ Sediado em ]</div>
+              <div className="font-archivo text-xl md:text-2xl leading-none">
+                Sao Paulo
+                <br />
+                Brasil
+              </div>
+            </div>
+
+            {/* Center — Rotating scroll indicator */}
+            <div className="flex justify-center">
+              <div className="relative w-36 h-36">
+                <svg
+                  className="absolute inset-0 w-full h-full animate-spin-slow"
+                  viewBox="0 0 144 144"
+                >
+                  <defs>
+                    <path
+                      id="circlePath"
+                      d="M 72,72 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
+                    />
+                  </defs>
+                  <text
+                    fill="#000000"
+                    style={{
+                      fontFamily: 'var(--font-space-mono), monospace',
+                      fontSize: '9px',
+                      fontWeight: 700,
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    <textPath href="#circlePath" startOffset="0">
+                      {' SCROLL DOWN • SCROLL DOWN • SCROLL DOWN • SCROLL DOWN • '}
+                    </textPath>
+                  </text>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <ArrowDown className="h-6 w-6 text-black" strokeWidth={2.5} />
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                  Gestao Pet que faz seu negocio crescer
-                </h1>
-                <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed drop-shadow">
-                  Clinicas veterinarias, pet shops, hoteis e daycares em uma unica plataforma inteligente.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/register">
-                    <Button size="lg" className="bg-[#FFB703] hover:bg-[#E97700] text-[#1A2B3C] font-semibold text-lg px-8 py-6 h-auto shadow-lg transition-colors">
-                      <Zap className="h-5 w-5 mr-2" />
-                      Comecar Gratis
-                    </Button>
-                  </Link>
-                  <Link href="#features">
-                    <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto">
-                      Conhecer Recursos
-                      <ArrowRight className="h-5 w-5 ml-2" />
-                    </Button>
-                  </Link>
-                </div>
-                <div className="flex flex-wrap items-center gap-6 mt-8 text-sm text-white/80">
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-[#FFB703]" />
-                    <span>Setup em 5 minutos</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-[#FFB703]" />
-                    <span>Sem cartao de credito</span>
-                  </div>
-                </div>
+              </div>
+            </div>
+
+            {/* Right — Role/title */}
+            <div className="md:text-right">
+              <div className="text-[11px] font-bold uppercase mb-2">[ Funcao ]</div>
+              <div className="font-archivo text-xl md:text-2xl leading-none">
+                Sistema Completo
+                <br />
+                de Gestao Pet
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Second Banner Section */}
-      <section id="demo" className="relative overflow-hidden">
-        <div className="relative w-full">
-          <Image
-            src="/images/hero-banner-1.jpg"
-            alt="PetPro - Todas as funcionalidades"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover"
-          />
-        </div>
-      </section>
-
-      {/* Stats Bar */}
-      <section className="bg-[#2671BC] py-14">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-4xl md:text-5xl font-heading font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-[#8ECAE6] font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-24 bg-[#FDF6EC]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-[#E97700]/10 text-[#E97700] px-4 py-2 rounded-full mb-4 border border-[#E97700]/20">
-              <Sparkles className="h-4 w-4" />
-              <span className="text-sm font-semibold">Recursos Poderosos</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
-              Tudo que voce precisa em um so lugar
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Ferramentas completas para gerenciar cada aspecto do seu negocio pet
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, i) => (
-              <Card key={i} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-white">
-                <CardHeader>
-                  <div className={`w-14 h-14 rounded-2xl ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <feature.icon className="h-7 w-7 text-white" />
-                  </div>
-                  <CardTitle className="text-xl font-heading">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Business Types */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
-              Para todo tipo de negocio pet
-            </h2>
-            <p className="text-xl text-gray-600">
-              Uma plataforma, multiplas possibilidades
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {businessTypes.map((type, i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className={`aspect-square rounded-2xl ${type.bg} flex flex-col items-center justify-center p-6 transition-all duration-300`}>
-                  <type.icon className={`h-12 w-12 ${type.iconColor} mb-4`} />
-                  <span className="text-sm font-medium text-gray-700 text-center">{type.label}</span>
+      {/* ==================== IMAGE STRIP - PETS ==================== */}
+      <section id="trabalhos" className="border-t-2 border-black">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {pets.map((pet, i) => (
+            <div
+              key={i}
+              className={`relative aspect-square border-black ${
+                i > 0 ? 'border-t-2 md:border-t-0 md:border-l-2' : ''
+              } overflow-hidden group bg-black`}
+            >
+              <Image
+                src={pet.src}
+                alt={pet.label}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between text-white">
+                <div>
+                  <div className="text-[11px] font-bold uppercase opacity-80">{pet.meta}</div>
+                  <div className="font-archivo text-2xl mt-1">{pet.label}</div>
                 </div>
+                <ArrowUpRight
+                  className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                  strokeWidth={2}
+                />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section id="testimonials" className="py-24 bg-gradient-to-br from-[#E97700] to-[#D1470B]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
-              Amado por Negocios Pet
-            </h2>
-            <p className="text-xl text-white/80">
-              Veja o que nossos clientes falam sobre o PetPro
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, i) => (
-              <Card key={i} className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <CardContent className="pt-6">
-                  <div className="flex gap-1 mb-4">
-                    {Array(testimonial.rating).fill(0).map((_, j) => (
-                      <Star key={j} className="h-5 w-5 text-[#FFB703] fill-[#FFB703]" />
-                    ))}
-                  </div>
-                  <p className="text-white/90 mb-6 text-lg leading-relaxed">
-                    &ldquo;{testimonial.content}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#FFB703]/30 flex items-center justify-center font-bold text-white">
-                      {testimonial.avatar}
-                    </div>
-                    <div>
-                      <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-white/60 text-sm">{testimonial.role}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="py-24 bg-[#FDF6EC]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-[#E97700]/10 text-[#E97700] px-4 py-2 rounded-full mb-4 border border-[#E97700]/20">
-              <Zap className="h-4 w-4" />
-              <span className="text-sm font-semibold">Precos Simples</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
-              Escolha seu plano ideal
-            </h2>
-            <p className="text-xl text-gray-600">
-              Comece gratis e escale conforme seu negocio cresce
-            </p>
-          </div>
+          ))}
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {pricingPlans.map((plan, i) => (
-              <Card key={i} className={`relative ${plan.highlighted ? 'border-[#E97700] border-2 shadow-xl scale-105' : 'border-gray-200'}`}>
-                {plan.highlighted && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#E97700] text-white text-sm font-semibold px-4 py-1 rounded-full">
-                    Mais Popular
-                  </div>
-                )}
-                <CardHeader className="text-center pb-2">
-                  <CardTitle className="text-2xl font-heading">{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <div className="mb-6">
-                    <span className="text-5xl font-heading font-bold text-gray-900">{plan.price}</span>
-                    {plan.period && <span className="text-gray-500">{plan.period}</span>}
-                  </div>
-                  <ul className="space-y-3 mb-8 text-left">
-                    {plan.features.map((feature, j) => (
-                      <li key={j} className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-[#E97700] flex-shrink-0" />
-                        <span className="text-gray-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="/register">
-                    <Button
-                      className={`w-full ${plan.highlighted ? 'bg-[#E97700] hover:bg-[#D1470B] text-white' : ''}`}
-                      variant={plan.highlighted ? 'default' : 'outline'}
+      {/* ==================== SKEWED MARQUEE ==================== */}
+      <section
+        className="relative bg-black py-16 md:py-20 overflow-hidden border-y-2 border-black"
+        style={{ transform: 'skewY(-2deg)', marginTop: '-20px', marginBottom: '-20px' }}
+      >
+        <div style={{ transform: 'skewY(2deg)' }}>
+          {/* Row 1 — orange */}
+          <div className="relative flex overflow-hidden py-2">
+            <div className="flex animate-marquee-left whitespace-nowrap">
+              {[...Array(2)].map((_, r) => (
+                <div key={r} className="flex shrink-0">
+                  {marqueeItems.map((item, i) => (
+                    <span
+                      key={`${r}-${i}`}
+                      className="font-archivo text-[#FF4D00] mx-10 inline-flex items-center gap-10"
+                      style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}
                     >
-                      {plan.cta}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
-              Perguntas Frequentes
-            </h2>
-            <p className="text-xl text-gray-600">
-              Tudo que voce precisa saber para comecar
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq, i) => (
-              <Card key={i} className="border-gray-200 hover:border-[#E97700]/30 transition-colors">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-medium flex items-center gap-3">
-                    <ChevronRight className="h-5 w-5 text-[#E97700]" />
-                    {faq.question}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pl-12 text-gray-600">
-                  {faq.answer}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-24 bg-gradient-to-br from-[#2671BC] to-[#1B5090] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-[#8ECAE6] rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#FFB703] rounded-full blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4 text-center relative">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-            Pronto para Transformar seu Negocio?
-          </h2>
-          <p className="text-xl text-[#8ECAE6] mb-10 max-w-2xl mx-auto">
-            Junte-se a centenas de estabelecimentos que ja usam PetPro para crescer
-          </p>
-          <Link href="/register">
-            <Button size="lg" className="bg-[#FFB703] hover:bg-[#E97700] text-[#1A2B3C] font-semibold text-lg px-10 py-6 h-auto shadow-lg transition-colors">
-              <Zap className="h-5 w-5 mr-2" />
-              Comecar Gratis Agora
-            </Button>
-          </Link>
-          <p className="mt-6 text-[#8ECAE6]/80 text-sm">
-            Nao precisa de cartao de credito &bull; Setup em 5 minutos
-          </p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            {/* Brand */}
-            <div>
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="bg-[#E97700] rounded-xl p-2">
-                  <PawPrint className="h-6 w-6 text-white" />
+                      {item}
+                      <span className="text-[#FF4D00]">●</span>
+                    </span>
+                  ))}
                 </div>
-                <span className="text-2xl font-heading font-bold">PetPro</span>
-              </div>
-              <p className="text-gray-400 mb-6">
-                A plataforma completa para gestao de negocios pet.
-              </p>
-              <div className="flex gap-4">
-                <a href="#" className="text-gray-400 hover:text-[#FFB703] transition-colors">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-[#FFB703] transition-colors">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-[#FFB703] transition-colors">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Product */}
-            <div>
-              <h4 className="font-heading font-semibold mb-4">Produto</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><a href="#features" className="hover:text-[#FFB703] transition-colors">Recursos</a></li>
-                <li><a href="#pricing" className="hover:text-[#FFB703] transition-colors">Precos</a></li>
-                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Integracao WhatsApp</a></li>
-                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Marketplace</a></li>
-              </ul>
-            </div>
-
-            {/* Company */}
-            <div>
-              <h4 className="font-heading font-semibold mb-4">Empresa</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Sobre</a></li>
-                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Carreiras</a></li>
-                <li><a href="#" className="hover:text-[#FFB703] transition-colors">Parceiros</a></li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-heading font-semibold mb-4">Contato</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-[#E97700]" />
-                  <span>contato@petpro.site</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-[#E97700]" />
-                  <span>(11) 99999-9999</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-[#E97700]" />
-                  <span>Sao Paulo, Brasil</span>
-                </li>
-              </ul>
+              ))}
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-gray-400 text-sm">
-              2025 PetPro. Todos os direitos reservados.
-            </p>
-            <div className="flex gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-[#FFB703] transition-colors">Termos de Uso</a>
-              <a href="#" className="hover:text-[#FFB703] transition-colors">Privacidade</a>
-              <a href="#" className="hover:text-[#FFB703] transition-colors">Cookies</a>
+          {/* Row 2 — white reversed */}
+          <div className="relative flex overflow-hidden py-2">
+            <div className="flex animate-marquee-right whitespace-nowrap">
+              {[...Array(2)].map((_, r) => (
+                <div key={r} className="flex shrink-0">
+                  {['CUIDAR', 'GESTAO', 'CRESCER', 'SIMPLIFICAR', 'ESCALAR', 'AUTOMATIZAR'].map(
+                    (item, i) => (
+                      <span
+                        key={`${r}-${i}`}
+                        className="font-archivo text-white/80 mx-10 inline-flex items-center gap-10"
+                        style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}
+                      >
+                        {item}
+                        <span>+</span>
+                      </span>
+                    )
+                  )}
+                </div>
+              ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== VERTICAL SERVICE LIST ==================== */}
+      <section id="servicos" className="bg-black text-white relative pt-24 pb-8">
+        <div className="px-6 md:px-10 mb-16 flex items-end justify-between flex-wrap gap-6">
+          <div>
+            <div className="text-[11px] font-bold uppercase text-[#FF4D00] mb-3">
+              [ 02 ] Nossos Servicos
+            </div>
+            <h2
+              className="font-archivo leading-[0.9]"
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
+            >
+              O que fazemos
+            </h2>
+          </div>
+          <p className="max-w-md text-sm uppercase tracking-tight">
+            Seis modulos integrados em uma unica plataforma. Escolha os que precisa,
+            ative quando quiser.
+          </p>
+        </div>
+
+        <div className="border-t border-white/20">
+          {services.map((svc) => (
+            <a
+              key={svc.index}
+              href="#planos"
+              className="group flex items-center justify-between px-6 md:px-10 py-8 md:py-10 border-b border-white/20 hover:bg-white/5 transition-colors duration-300 cursor-pointer"
+            >
+              <div className="flex items-center gap-8 md:gap-16 flex-1 min-w-0">
+                <span className="font-mono-brut text-[#FF4D00] text-sm md:text-base font-bold shrink-0">
+                  {svc.index}
+                </span>
+                <div className="flex-1 min-w-0 transition-transform duration-300 group-hover:translate-x-4">
+                  <h3
+                    className="font-archivo leading-[0.9] truncate"
+                    style={{ fontSize: 'clamp(2rem, 7vw, 5.5rem)' }}
+                  >
+                    {svc.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {svc.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] font-bold uppercase px-3 py-1 border border-white/30 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <ArrowUpRight
+                className="h-12 w-12 md:h-16 md:w-16 text-[#FF4D00] opacity-0 group-hover:opacity-100 group-hover:rotate-45 transition-all duration-300 shrink-0 ml-4"
+                strokeWidth={2}
+              />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ==================== STATS STRIP ==================== */}
+      <section className="bg-[#FF4D00] border-y-2 border-black">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x-2 md:divide-y-0 divide-y-2 divide-black">
+          {stats.map((stat, i) => (
+            <div
+              key={i}
+              className={`p-8 md:p-12 ${i > 1 ? 'border-t-2 border-black md:border-t-0' : ''}`}
+            >
+              <div
+                className="font-archivo leading-none"
+                style={{ fontSize: 'clamp(3rem, 7vw, 6rem)' }}
+              >
+                {stat.value}
+              </div>
+              <div className="text-[11px] font-bold uppercase mt-3">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ==================== BUSINESS TYPES ==================== */}
+      <section className="bg-[#FF4D00] border-b-2 border-black py-24 px-6 md:px-10">
+        <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
+          <div>
+            <div className="text-[11px] font-bold uppercase mb-3">[ 03 ] Para quem </div>
+            <h2
+              className="font-archivo leading-[0.9]"
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
+            >
+              Todo tipo
+              <br />
+              de negocio pet
+            </h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-2 border-black">
+          {businessTypes.map((type, i) => (
+            <div
+              key={i}
+              className={`relative aspect-[4/5] overflow-hidden group bg-black ${
+                i > 0 ? 'border-t-2 lg:border-t-0 lg:border-l-2 md:border-l-2 md:[&:nth-child(3)]:border-l-0 md:[&:nth-child(3)]:border-t-2 md:[&:nth-child(4)]:border-t-2 lg:[&:nth-child(3)]:border-t-0 lg:[&:nth-child(4)]:border-t-0 border-black' : ''
+              }`}
+            >
+              <Image
+                src={type.img}
+                alt={type.label}
+                fill
+                sizes="(max-width: 768px) 100vw, 25vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                <div className="text-[10px] font-bold uppercase opacity-70 mb-1">
+                  0{i + 1}
+                </div>
+                <h3 className="font-archivo text-xl leading-none">{type.label}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ==================== TESTIMONIALS ==================== */}
+      <section className="bg-white border-b-2 border-black py-24 px-6 md:px-10">
+        <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
+          <div>
+            <div className="text-[11px] font-bold uppercase mb-3">[ 04 ] Depoimentos</div>
+            <h2
+              className="font-archivo leading-[0.9]"
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
+            >
+              Quem usa,
+              <br />
+              recomenda.
+            </h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-2 border-black">
+          {testimonials.map((t, i) => (
+            <div
+              key={i}
+              className={`p-8 md:p-10 bg-white ${
+                i > 0 ? 'border-t-2 md:border-t-0 md:border-l-2 border-black' : ''
+              }`}
+            >
+              <div className="text-[#FF4D00] font-archivo text-6xl leading-none mb-6">&ldquo;</div>
+              <p className="text-base md:text-lg leading-tight mb-8 font-mono-brut">
+                {t.quote}
+              </p>
+              <div className="border-t-2 border-black pt-4">
+                <div className="font-archivo text-sm">{t.name}</div>
+                <div className="text-[11px] font-bold uppercase mt-1 text-black/60">
+                  {t.role}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ==================== PRICING ==================== */}
+      <section id="planos" className="bg-[#FF4D00] border-b-2 border-black py-24 px-6 md:px-10">
+        <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
+          <div>
+            <div className="text-[11px] font-bold uppercase mb-3">[ 05 ] Planos</div>
+            <h2
+              className="font-archivo leading-[0.9]"
+              style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
+            >
+              Escolha
+              <br />
+              seu plano.
+            </h2>
+          </div>
+          <p className="max-w-md text-sm uppercase tracking-tight">
+            Comece gratis. Escale quando precisar. Sem fidelidade, sem pegadinha.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-2 border-black">
+          {pricingPlans.map((plan, i) => (
+            <div
+              key={i}
+              className={`p-8 md:p-10 flex flex-col ${
+                plan.highlighted ? 'bg-black text-white' : 'bg-white text-black'
+              } ${i > 0 ? 'border-t-2 md:border-t-0 md:border-l-2 border-black' : ''}`}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="text-[11px] font-bold uppercase">[ 0{i + 1} ]</div>
+                {plan.highlighted && (
+                  <span className="text-[10px] font-bold uppercase bg-[#FF4D00] text-black px-2 py-1">
+                    Popular
+                  </span>
+                )}
+              </div>
+              <h3 className="font-archivo text-3xl mb-2">{plan.name}</h3>
+              <div className="mb-6">
+                <span className="font-archivo text-5xl">{plan.price}</span>
+                <div className="text-[11px] font-bold uppercase opacity-70 mt-1">
+                  {plan.period}
+                </div>
+              </div>
+              <ul className="space-y-3 mb-8 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm">
+                    <span
+                      className={`font-bold ${plan.highlighted ? 'text-[#FF4D00]' : 'text-black'}`}
+                    >
+                      +
+                    </span>
+                    <span className="uppercase tracking-tight">{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/register"
+                className={`block text-center w-full py-4 rounded-full font-bold uppercase text-xs tracking-tight transition-all duration-200 hover:scale-105 ${
+                  plan.highlighted
+                    ? 'bg-[#FF4D00] text-black hover:bg-white'
+                    : 'bg-black text-white hover:bg-[#FF4D00] hover:text-black'
+                }`}
+              >
+                Comecar agora
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ==================== GIANT CTA ==================== */}
+      <section className="bg-[#FF4D00] border-b-2 border-black py-28 md:py-40 px-6 md:px-10 text-center">
+        <div className="text-[11px] font-bold uppercase mb-8">[ Pronto pra comecar? ]</div>
+        <h2
+          className="font-archivo leading-[0.85] mb-12"
+          style={{ fontSize: 'clamp(3.5rem, 14vw, 16rem)' }}
+        >
+          Comece
+          <br />
+          Agora.
+        </h2>
+        <Link
+          href="/register"
+          className="inline-flex items-center gap-4 bg-black text-white rounded-full px-10 py-6 font-archivo text-lg md:text-xl hover:scale-110 hover:bg-white hover:text-black transition-all duration-300"
+        >
+          Criar conta gratis
+          <ArrowUpRight className="h-6 w-6" strokeWidth={2.5} />
+        </Link>
+        <p className="mt-8 text-[11px] font-bold uppercase">
+          Sem cartao de credito · setup em 5 minutos · cancele quando quiser
+        </p>
+      </section>
+
+      {/* ==================== FOOTER ==================== */}
+      <footer
+        id="contato"
+        className="bg-[#FF4D00] border-t-2 border-black px-6 md:px-10 py-12"
+      >
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 bg-black flex items-center justify-center">
+                <PawPrint className="h-5 w-5 text-[#FF4D00]" strokeWidth={2.5} />
+              </div>
+              <span className="font-archivo text-2xl">PETPRO</span>
+            </div>
+            <p className="text-xs uppercase font-bold">
+              Plataforma completa para negocios pet
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-6 text-[11px] font-bold uppercase">
+            <a href="#servicos" className="hover:underline">
+              Servicos
+            </a>
+            <a href="#planos" className="hover:underline">
+              Planos
+            </a>
+            <a href="mailto:contato@petpro.site" className="hover:underline">
+              contato@petpro.site
+            </a>
+          </div>
+        </div>
+
+        <div className="border-t-2 border-black pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] font-bold uppercase">
+          <div>© 2026 Petpro / Sao Paulo, Brasil</div>
+          <div className="flex gap-6">
+            <a href="#" className="flex items-center gap-2 hover:underline">
+              <Instagram className="h-3 w-3" strokeWidth={2.5} />
+              Instagram
+            </a>
+            <a href="#" className="flex items-center gap-2 hover:underline">
+              <Linkedin className="h-3 w-3" strokeWidth={2.5} />
+              Linkedin
+            </a>
+            <a href="#" className="flex items-center gap-2 hover:underline">
+              <Facebook className="h-3 w-3" strokeWidth={2.5} />
+              Facebook
+            </a>
           </div>
         </div>
       </footer>
