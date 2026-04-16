@@ -7,7 +7,9 @@ import {
   Linkedin,
   Facebook,
   PawPrint,
+  MousePointer2,
 } from 'lucide-react';
+import { TubesBackground } from '@/components/tubes-background';
 
 const services = [
   {
@@ -187,44 +189,158 @@ export default function Home() {
       </header>
 
       {/* ==================== HERO ==================== */}
-      <section className="pt-32 md:pt-40 pb-0">
+      <section className="pt-28 md:pt-36 pb-0">
         <div className="px-6 md:px-10">
           {/* Top meta row */}
-          <div className="flex items-center justify-between text-[11px] font-bold uppercase mb-10 md:mb-16">
-            <span>[ v.4 / 2026 ]</span>
-            <span className="hidden md:inline">PLATAFORMA // GESTAO PET</span>
+          <div className="flex items-center justify-between text-[11px] font-bold uppercase mb-10 md:mb-14">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-black rounded-full animate-pulse inline-block" />
+              [ ao vivo / 500+ clinicas ]
+            </span>
+            <span className="hidden md:inline">PLATAFORMA // GESTAO PET / v.4 2026</span>
             <span>BRASIL / SP</span>
           </div>
 
-          {/* Giant headline */}
-          <h1
-            className="font-archivo text-center leading-[0.85] text-black"
-            style={{ fontSize: 'clamp(4rem, 16vw, 20rem)' }}
-          >
-            PETPRO
-          </h1>
+          {/* Split hero: text left, image right */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-stretch">
+            {/* LEFT — Headline + copy + CTAs */}
+            <div className="lg:col-span-7 flex flex-col justify-between">
+              <div>
+                <h1
+                  className="font-archivo text-black leading-[0.82] mb-8"
+                  style={{ fontSize: 'clamp(2.75rem, 9.5vw, 11rem)' }}
+                >
+                  Gestao
+                  <br />
+                  pro seu
+                  <br />
+                  pet shop<span className="text-white">.</span>
+                </h1>
+
+                <p className="max-w-xl text-[15px] md:text-lg leading-tight font-mono-brut mb-10">
+                  Plataforma <strong>all-in-one</strong> pra clinicas veterinarias,
+                  pet shops, hoteis e daycares. Agenda, prontuario, vacinas,
+                  estoque, PDV e WhatsApp — tudo num lugar so.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-4 mb-10">
+                  <Link
+                    href="/register"
+                    className="inline-flex items-center gap-3 bg-black text-white rounded-full px-7 py-4 font-archivo text-sm md:text-base uppercase hover:scale-105 hover:bg-white hover:text-black transition-all duration-200"
+                  >
+                    Comecar gratis
+                    <ArrowUpRight className="h-5 w-5" strokeWidth={2.5} />
+                  </Link>
+                  <a
+                    href="#servicos"
+                    className="inline-flex items-center gap-3 border-2 border-black text-black rounded-full px-7 py-4 font-archivo text-sm md:text-base uppercase hover:bg-black hover:text-[#FF4D00] transition-colors duration-200"
+                  >
+                    Ver recursos
+                  </a>
+                </div>
+              </div>
+
+              {/* Mini stats bar */}
+              <div className="grid grid-cols-3 border-t-2 border-black pt-5">
+                <div>
+                  <div className="font-archivo text-3xl md:text-4xl leading-none">500+</div>
+                  <div className="text-[10px] font-bold uppercase mt-1">Negocios</div>
+                </div>
+                <div className="border-l-2 border-black pl-4">
+                  <div className="font-archivo text-3xl md:text-4xl leading-none">50K</div>
+                  <div className="text-[10px] font-bold uppercase mt-1">Pets ativos</div>
+                </div>
+                <div className="border-l-2 border-black pl-4">
+                  <div className="font-archivo text-3xl md:text-4xl leading-none">99.9%</div>
+                  <div className="text-[10px] font-bold uppercase mt-1">Uptime</div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT — Pet image + Interactive 3D tubes */}
+            <div className="lg:col-span-5 flex flex-col gap-4 min-h-[420px] md:min-h-[560px]">
+              {/* Pet image card */}
+              <div className="relative border-2 border-black bg-black flex-1 overflow-hidden group">
+                <Image
+                  src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1400&q=85"
+                  alt="Golden retriever — clientes satisfeitos PetPro"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute top-4 left-4 right-4 flex items-start justify-between">
+                  <span className="bg-[#FF4D00] text-black border-2 border-black px-3 py-1 text-[10px] font-bold uppercase">
+                    [ ATENDIDOS HOJE / 1.247 PETS ]
+                  </span>
+                  <div className="w-10 h-10 rounded-full bg-[#FF4D00] border-2 border-black flex items-center justify-center animate-spin-slow">
+                    <span className="text-black text-xs font-bold">●</span>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 bg-black/85 backdrop-blur-sm border-t-2 border-[#FF4D00] text-white p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <div className="text-[10px] font-bold uppercase text-[#FF4D00] mb-1">
+                        Modulo em destaque
+                      </div>
+                      <div className="font-archivo text-base md:text-lg leading-none">
+                        Vacinas via WhatsApp
+                      </div>
+                    </div>
+                    <ArrowUpRight className="h-7 w-7 md:h-9 md:w-9 text-[#FF4D00] shrink-0" strokeWidth={2} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Interactive 3D tubes card */}
+              <div className="relative border-2 border-black bg-black h-[160px] md:h-[180px] overflow-hidden cursor-pointer">
+                <TubesBackground
+                  className="bg-black"
+                  colors={['#FF4D00', '#FFFFFF', '#FF8A2E']}
+                  lightColors={['#FF4D00', '#FFB703', '#FF8A2E', '#FFFFFF']}
+                >
+                  <div className="absolute inset-0 flex items-center justify-between p-5 pointer-events-none">
+                    <div>
+                      <div className="text-[10px] font-bold uppercase text-[#FF4D00] mb-2">
+                        [ Sistema vivo 3D ]
+                      </div>
+                      <div className="font-archivo text-white text-xl md:text-2xl leading-[0.9]">
+                        Mova o mouse.
+                        <br />
+                        Clique pra trocar cor.
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <MousePointer2
+                        className="h-8 w-8 md:h-10 md:w-10 text-[#FF4D00]"
+                        strokeWidth={2}
+                      />
+                      <span className="text-[9px] font-bold uppercase text-white/80">
+                        interativo
+                      </span>
+                    </div>
+                  </div>
+                </TubesBackground>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Metadata row divider */}
         <div className="mt-10 md:mt-16 border-t-2 border-black">
-          <div className="grid grid-cols-1 md:grid-cols-3 items-center px-6 md:px-10 py-8 gap-6">
-            {/* Left — Based in */}
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center px-6 md:px-10 py-6 gap-6">
             <div>
               <div className="text-[11px] font-bold uppercase mb-2">[ Sediado em ]</div>
-              <div className="font-archivo text-xl md:text-2xl leading-none">
-                Sao Paulo
-                <br />
-                Brasil
+              <div className="font-archivo text-lg md:text-xl leading-none">
+                Sao Paulo / Brasil
               </div>
             </div>
 
-            {/* Center — Rotating scroll indicator */}
             <div className="flex justify-center">
-              <div className="relative w-36 h-36">
-                <svg
-                  className="absolute inset-0 w-full h-full animate-spin-slow"
-                  viewBox="0 0 144 144"
-                >
+              <div className="relative w-28 h-28">
+                <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 144 144">
                   <defs>
                     <path
                       id="circlePath"
@@ -247,18 +363,15 @@ export default function Home() {
                   </text>
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <ArrowDown className="h-6 w-6 text-black" strokeWidth={2.5} />
+                  <ArrowDown className="h-5 w-5 text-black" strokeWidth={2.5} />
                 </div>
               </div>
             </div>
 
-            {/* Right — Role/title */}
             <div className="md:text-right">
-              <div className="text-[11px] font-bold uppercase mb-2">[ Funcao ]</div>
-              <div className="font-archivo text-xl md:text-2xl leading-none">
-                Sistema Completo
-                <br />
-                de Gestao Pet
+              <div className="text-[11px] font-bold uppercase mb-2">[ Setup ]</div>
+              <div className="font-archivo text-lg md:text-xl leading-none">
+                5 minutos / sem cartao
               </div>
             </div>
           </div>
